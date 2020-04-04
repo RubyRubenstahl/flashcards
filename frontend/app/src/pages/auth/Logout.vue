@@ -4,14 +4,15 @@
     class="flex flex-center"
   >
     <div class="q-gutter-md">
-      <h1
-        class="text-h1 flex flex-center"
-        v-if="isAuthenticated"
-      >Logging out...</h1>
-      <h1
-        class="text-h1 flex flex-center"
-        v-else
-      >Logout complete.</h1>
+
+        <h1
+          class="text-h1 flex flex-center"
+          v-if="isAuthenticated"
+        >Logging out...</h1>
+        <h1
+          class="text-h1 flex flex-center"
+          v-else
+        >Logout complete.</h1>
 
     </div>
   </q-page>
