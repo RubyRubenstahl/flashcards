@@ -1,0 +1,9 @@
+const users = require('./users/users.service.js');
+const rokuKeypress = require('./roku/keypress/keypress.service.js');
+const rokuDevices = require('./roku/devices/devices.service.js');
+// eslint-disable-next-line no-unused-vars
+module.exports = function (app) {
+  app.configure(users);
+  app.configure(rokuKeypress);
+  app.configure(rokuDevices);
+};
