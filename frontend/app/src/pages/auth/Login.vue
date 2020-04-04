@@ -3,32 +3,51 @@
     padding
     class="flex flex-center"
   >
-    <q-form @submit="login">
-      <div class="q-gutter-md">
-        <h1 class="text-h5 flex flex-center">The Rubenstahl App</h1>
-        <q-input
-          label="Username"
-          v-model="username"
-          filled
-        ></q-input>
-        <q-input
-          label="Password"
-          type="password"
-          v-model="password"
-          filled
-        ></q-input>
-        <q-banner class="bg-red text-white" v-if="errorOnAuthenticate">
-          {{errorOnAuthenticate.message}}
-        </q-banner>
-        <q-btn type="submit" :loading="isAuthenticatePending">Login</q-btn>
-        
-      </div>
-    </q-form>
+
+    <q-card  class="q-pa-md" style="background-color:#000000BB;width:500px">
+      <q-card-section class="flex flex-center">
+        <div class="text-h4 text-uppercase text-weight-light">The Rubenstahl App</div>
+
+      </q-card-section>
+      <q-card-section >
+
+        <q-form @submit="login">
+          <div class="q-gutter-md q-pl-md">
+          <q-input
+            autofocus
+            label="Username"
+            v-model="username"
+            class="full-width" 
+            filled
+          ></q-input>
+          <q-input
+            label="Password"
+            type="password"
+            v-model="password"
+            class="full-width" 
+            filled
+          ></q-input>
+          <q-banner
+            class="bg-red text-white"
+            v-if="errorOnAuthenticate"
+          >
+            {{errorOnAuthenticate.message}}
+          </q-banner>
+          <q-btn
+            type="submit"
+            class="full-width" 
+            :loading="isAuthenticatePending"
+            color="primary"
+          >Login</q-btn>
+</div>
+        </q-form>
+      </q-card-section>
+    </q-card>
   </q-page>
 </template>
 
 <script>
-  import {mapState} from 'vuex'
+  import { mapState } from 'vuex'
   export default {
     name: 'Login',
     data () {      return {
@@ -36,7 +55,7 @@
         password: null
       }
     },
-    computed:{
+    computed: {
       ...mapState('auth', ['errorOnAuthenticate', 'isAuthenticatePending'])
     },
     methods: {
@@ -45,7 +64,7 @@
           strategy: 'local',
           username: this.username,
           password: this.password
-        }).then(res=>{
+        }).then(res => {
           this.$router.push('/app')
         })
       }

@@ -5,11 +5,11 @@
   >
     <div class="q-gutter-md">
       <h1
-        class="text-h5 flex flex-center"
+        class="text-h1 flex flex-center"
         v-if="isAuthenticated"
       >Logging out...</h1>
       <h1
-        class="text-h5 flex flex-center"
+        class="text-h1 flex flex-center"
         v-else
       >Logout complete.</h1>
 
