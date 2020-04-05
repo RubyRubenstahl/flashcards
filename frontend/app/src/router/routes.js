@@ -15,14 +15,23 @@ const routes = [
     component: () => import("layouts/MainLayout"),
     children: [
       { path: "", component: () => import("pages/Index.vue") },
-      { path: "tv", component: () => import("pages/TV.vue") }
+      { path: "tv", component: () => import("pages/tv/TvMenu.vue") },
+      {
+        path: "tv/settings",
+        component: () => import("pages/tv/TvSettings.vue"),
+      },
+      {
+        path: "tv/remote/:id",
+        component: () => import("pages/tv/TvRemote.vue"),
+      },
+      { path: "tv/new", component: () => import("pages/tv/EditTv.vue"), meta: {mode: 'new'} },
+      { path: "tv/edit/:id", component: () => import("pages/tv/EditTv.vue") , meta: {mode: 'edit'}},
     ],
   },
 
   {
     path: "/app/setup",
     component: () => import("layouts/MainLayout"),
-    children: [{ path: "tvs", component: () => import("pages/setup/TVs.vue") }],
   },
 ];
 

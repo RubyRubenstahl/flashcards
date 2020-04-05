@@ -2,8 +2,9 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import auth from "./store.auth";
 // import example from './module-example'
-
+import { FeathersVuex } from "../feathers-client";
 Vue.use(Vuex)
+Vue.use(FeathersVuex);
 
 /*
  * If not building with SSR mode, you can

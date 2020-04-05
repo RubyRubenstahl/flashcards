@@ -1,0 +1,94 @@
+<template>
+  <q-page class="flex flex-center">
+    <q-form
+      @submit="save"
+      v-if="tv"
+    >
+      <div class="q-gutter-md q-pl-md">
+
+        <q-input
+          autofocus
+          label="Tv Name"
+          v-model="tv.name"
+          filled
+        ></q-input>
+        <q-input
+          label="Icon"
+          v-model="tv.icon"
+          class="full-width q-pb-lg"
+          filled
+        ></q-input>
+
+        <q-input
+          label="Roku IP Address"
+          v-model="tv.roku.ip"
+          class="full-width"
+          filled
+        ></q-input>
+        <q-input
+          label="Roku Port"
+          v-model="tv.roku.port"
+          class="full-width q-pb-lg"
+          filled
+        ></q-input>
+
+        <q-input
+          label="LIRC IP Address"
+          v-model="tv.lirc.ip"
+          class="full-width"
+          filled
+        ></q-input>
+        <q-input
+          label="LIRC Port"
+          v-model="tv.roku.port"
+          class="full-width"
+          filled
+        ></q-input>
+ 
+        <q-btn
+          type="submit"
+          class="full-width"
+          color="primary"
+        >Save</q-btn>
+        <q-btn
+          class="full-width"
+          color="negative"
+          @click="$router.go(-1)"
+        >Cancel</q-btn>
+      </div>
+    </q-form>
+    <q-spinner-pie
+      v-else
+      size="20vmin"
+    />
+  </q-page>
+</template>
+
+<script>
+  import HexButtonGroup from 'components/HexButtonGroup'
+  export default {
+    name: 'EditTv',
+    components: { HexButtonGroup },
+    data () {
+      return {
+        tv: null
+      }
+    },
+    created (){
+      const { Tv } = this.$FeathersVuex.api
+       if(this.$route.params.id){
+        this.$store.dispatch('tv/get', this.$route.params.id).then(res=>this.tv=res.clone())
+      }else{
+        this.tv = new Tv({ }).clone()
+
+      }
+
+    },
+
+    methods: {
+      save () {
+        this.tv.save().then(res=>this.$router.go(-1));
+      }
+    }
+  }
+</script>

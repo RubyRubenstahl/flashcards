@@ -34,7 +34,8 @@ export default {
         color:{
             type: String,
             default: '#00FFFF22'
-        }
+        },
+
     }
 }
 </script>
