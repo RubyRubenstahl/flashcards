@@ -7,7 +7,7 @@
           label="Username"
           v-model="username"
           class="full-width"
-          filled
+        filled
         ></q-input>
         <q-input
           label="Password"
@@ -15,13 +15,15 @@
           v-model="password"
           class="full-width"
           filled
+        
+
         ></q-input>
-        <q-banner
-          class="bg-red text-white"
+        <div
+          class="text-red full-width flex flex-center"
           v-if="errorOnAuthenticate"
         >
           {{errorOnAuthenticate.message}}
-        </q-banner>
+        </div>
         <q-btn
           type="submit"
           class="full-width"

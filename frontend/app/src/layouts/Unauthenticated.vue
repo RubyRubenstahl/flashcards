@@ -31,10 +31,12 @@
 .cover {
   background-image: linear-gradient(
       to bottom,
-      rgba(7, 49, 100, 0.552),
-      rgba(20, 40, 80, 0.897)
+      rgba(3, 27, 105, 0.752),
+      rgba(3, 27, 105, 0.752),
+      rgba(38, 4, 92, 0.89)
     ),
     url("/statics/login-background.jpg");
   background-size: cover;
+  background-position: center center;
 }
 </style>
