@@ -15,7 +15,7 @@ module.exports = function (ctx) {
     extras: [
       // 'ionicons-v4',
       // 'mdi-v4',
-      'fontawesome-v5',
+      "fontawesome-v5",
       // 'eva-icons',
       // 'themify',
       // 'line-awesome',
@@ -27,7 +27,7 @@ module.exports = function (ctx) {
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-framework
     framework: {
-      iconSet: "material-icons", // Quasar icon set
+      iconSet: "fontawesome-v5", // Quasar icon set
       lang: "en-us", // Quasar language pack
 
       // Possible values for "all":
@@ -74,7 +74,7 @@ module.exports = function (ctx) {
         //   }
         // })
       },
-      transpileDependencies: ["feathers-vuex"]
+      transpileDependencies: ["feathers-vuex"],
     },
 
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer
@@ -86,7 +86,7 @@ module.exports = function (ctx) {
 
     // animations: 'all', // --- includes all animations
     // https://quasar.dev/options/animations
-    animations: ['bounceInDown', 'fadeIn', 'fadeOut', 'jackInTheBox'],
+    animations: ["bounceInDown", "fadeIn", "fadeOut", "jackInTheBox"],
 
     // https://quasar.dev/quasar-cli/developing-ssr/configuring-ssr
     ssr: {

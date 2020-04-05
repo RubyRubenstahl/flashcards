@@ -13,7 +13,10 @@ const routes = [
   {
     path: "/app",
     component: () => import("layouts/MainLayout"),
-    children: [{ path: "", component: () => import("pages/Index.vue") }],
+    children: [
+      { path: "", component: () => import("pages/Index.vue") },
+      { path: "tv", component: () => import("pages/TV.vue") }
+    ],
   },
 
   {
