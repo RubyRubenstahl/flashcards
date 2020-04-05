@@ -1,6 +1,7 @@
 <template>
   <q-layout view="hHh Lpr fFf">
     <!-- Be sure to play with the Layout demo on docs -->
+    <SillyAnimations/>
 
     <q-page-container class="cover">
       <!-- This is where pages get injected -->
@@ -16,9 +17,11 @@
 </template>
 
 <script>
-  export default {
-    // name: 'LayoutName',
+import SillyAnimations from 'components/SillyAnimations'
 
+  export default {
+     name: 'Unauthenticated',
+    components:{SillyAnimations},
     data () {
       return {
 
@@ -31,9 +34,9 @@
 .cover {
   background-image: linear-gradient(
       to bottom,
-      rgba(3, 27, 105, 0.752),
-      rgba(3, 27, 105, 0.752),
-      rgba(38, 4, 92, 0.89)
+      rgba(3, 22, 85, 0.8),
+      rgba(14, 11, 100, 0.75)
+      
     ),
     url("/statics/login-background.jpg");
   background-size: cover;

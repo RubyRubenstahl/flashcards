@@ -1,7 +1,8 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
+    <SillyAnimations/>
+    <q-header  class="transparent">
+      <q-toolbar class="transparent">
         <q-btn
           flat
           dense
@@ -11,11 +12,10 @@
           @click="leftDrawerOpen = !leftDrawerOpen"
         />
 
-        <q-toolbar-title>
-          Quasar App
+        <q-toolbar-title class="text-uppercase text-weight-light">
+          The Rubenstahl App
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
@@ -40,20 +40,27 @@
       </q-list>
     </q-drawer>
 
-    <q-page-container>
-      <router-view />
+    <q-page-container class="cover">
+      <!-- This is where pages get injected -->
+      <transition
+
+      >
+        <router-view />
+      </transition>
+
     </q-page-container>
+
   </q-layout>
 </template>
 
 <script>
 import EssentialLink from 'components/EssentialLink'
-
+import SillyAnimations from 'components/SillyAnimations'
 export default {
   name: 'MainLayout',
 
   components: {
-    EssentialLink
+    EssentialLink, SillyAnimations
   },
 
   data () {
