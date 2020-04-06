@@ -1,42 +1,44 @@
 <template>
   <q-page class="flex flex-center">
-   
-    <HexButton
-      v-for="tv in tvs" :key="tv._id"
-      :title="tv.name"
-      :icon="tv.icon || 'tv'"
-      action-icon="fas fa-edit"
-      :to="`/app/tv/edit/${tv._id}`"
-      />
     <HexButtonGroup :buttons="buttons" />
   </q-page>
 </template>
 
 <script>
   import HexButtonGroup from 'components/HexButtonGroup'
-  import HexButton from 'components/HexButton'
-  import {mapGetters} from 'vuex';
+  import { mapGetters } from 'vuex';
+
   export default {
-    name: 'TvSettings',
-    components: { HexButtonGroup, HexButton },
-    created(){
+    name: 'TvMenu',
+    components: { HexButtonGroup },
+    created () {
       this.$store.dispatch('tv/find', {})
     },
-    data () {
-      return {
-        buttons: [
+    computed: {
+      ...mapGetters({ tvButtons: 'tv/tvButtons' }),
+      buttons () {
+        return [
+          ...this.tvButtons.map(button=>({
+            ...button, 
+            to: `/app/tv/edit/${button._id}`,
+            actionIcon: 'fas fa-edit'
+          })),
           {
-            title: "Add a TV",
-            icon: "fas fa-plus-circle",
-            to: "/app/tv/new",
-            color: "#00FFFF22"
-          },
+            title: "Add Tv",
+            icon: "tv",
+            actionIcon: "fas fa-plus-circle",
+            to: "/app/tv/settings",
+            color: "#00FFFF22"          },
 
         ]
       }
+
     },
-    computed:{
-      ...mapGetters({tvs:'tv/list'}),
+
+
+    data () {
+      return {
+          }
     }
   }
 </script>
