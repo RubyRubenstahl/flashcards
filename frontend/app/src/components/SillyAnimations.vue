@@ -12,6 +12,10 @@
     src="statics/wolf_walking.gif"
     class="wolf"
   />
+  <img
+    src="statics/space-unicorn.png"
+    class="spaceUnicorn"
+  />
 </section>
 </template>
 
@@ -47,6 +51,23 @@
     filter:  brightness(800%) contrast(0%);
   }
 
+@keyframes spaceUnicorn-loop {
+  40%, 100% {
+    transform: translate(0px, -5000px);
+  }
+}
+  .spaceUnicorn{
+    position: fixed;
+    animation-delay: 0;
+    opacity:0.6;
+    transform: scale(0.2) rotate(8deg);
+    animation-name: spaceUnicorn-loop;
+    animation-duration: 80s;
+    animation-iteration-count: infinite;
+    bottom:-1000px;
+    left:200px;
+    animation-timing-function: linear;
+  }
 
 
   @keyframes hubbleloop {
