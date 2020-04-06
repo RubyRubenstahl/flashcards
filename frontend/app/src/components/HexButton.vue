@@ -5,8 +5,9 @@
         class="grow"
         :style="{backgroundColor: color,width:size, height: size, clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)'}">
         <div class="flex flex-center justify-center column q-gutter-md" >
-        <q-icon :name="icon" class="" size="calc(10px + 5vmin)"></q-icon>
-        <span class="text-center text-weight-light hex-text" style="font-size: calc(0.1in + 2vmin)">
+        <q-icon :name="actionIcon" class="q-ma-sm q-pa-sm" size="calc(10px + 2vmin)"></q-icon>
+        <q-icon :name="icon" class="q-mt-sm q-pt-sm" size="calc(10px + 5vmin)"></q-icon>
+        <span class="text-center text-weight-light hex-text q-mb-lg" style="font-size: calc(0.1in + 2vmin)">
         {{title}}
         </span>
         </div>
@@ -26,6 +27,9 @@ export default {
             default: 'calc(1in + 20vmin)'
         },
         icon:{
+            type: String
+        },
+        actionIcon:{
             type: String
         },
         to:{
