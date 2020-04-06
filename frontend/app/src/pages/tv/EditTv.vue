@@ -55,6 +55,15 @@
           color="negative"
           @click="$router.go(-1)"
         >Cancel</q-btn>
+
+        <q-btn
+          class="full-width q-mt-lg"
+          color="negative"
+          @click="remove"
+          v-if="!!$route.params.id"
+          icon="delete"
+          outline
+        >Delete</q-btn>
       </div>
     </q-form>
     <q-spinner-pie
@@ -88,6 +97,9 @@
     methods: {
       save () {
         this.tv.save().then(res=>this.$router.go(-1));
+      },
+      remove(){
+        this.tv.remove().then(res=>this.$router.go(-1));
       }
     }
   }

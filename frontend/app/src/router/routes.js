@@ -11,6 +11,16 @@ const routes = [
     children: [{ path: "", component: () => import("pages/auth/Logout.vue") }],
   },
   {
+    path: "/app/tv/remote/",
+    component: () => import("layouts/TvRemoteLayout"),
+    children: [
+      {
+        path: ":id",
+        component: () => import("pages/tv/TvRemote.vue"),
+      },
+    ],
+  },
+  {
     path: "/app",
     component: () => import("layouts/MainLayout"),
     children: [
@@ -21,11 +31,15 @@ const routes = [
         component: () => import("pages/tv/TvSettings.vue"),
       },
       {
-        path: "tv/remote/:id",
-        component: () => import("pages/tv/TvRemote.vue"),
+        path: "tv/new",
+        component: () => import("pages/tv/EditTv.vue"),
+        meta: { mode: "new" },
       },
-      { path: "tv/new", component: () => import("pages/tv/EditTv.vue"), meta: {mode: 'new'} },
-      { path: "tv/edit/:id", component: () => import("pages/tv/EditTv.vue") , meta: {mode: 'edit'}},
+      {
+        path: "tv/edit/:id",
+        component: () => import("pages/tv/EditTv.vue"),
+        meta: { mode: "edit" },
+      },
     ],
   },
 
