@@ -13,16 +13,16 @@ class Tv extends BaseModel {
   // Define default properties here
   static instanceDefaults() {
     return {
-      name: '',
-      icon: '',
+      name: "",
+      icon: "",
       roku: {
-        ip: '',
-        port: 1900
+        ip: "",
+        port: 1900,
       },
       lirc: {
-        ip: '',
-        port: 8765
-      }
+        ip: "",
+        port: 8765,
+      },
     };
   }
 }
@@ -31,6 +31,15 @@ const servicePlugin = makeServicePlugin({
   Model: Tv,
   service: feathersClient.service(servicePath),
   servicePath,
+  getters: {
+    tvButtons: (state, getters) => {
+      const res = getters.find({ paginate: false });
+      return res.data.map((tv) => ({
+        title: tv.name,
+        ...tv
+      }));
+    },
+  },
 });
 
 // Setup the client-side Feathers hooks.
