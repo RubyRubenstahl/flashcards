@@ -1,15 +1,12 @@
 <template>
   <q-page class="flex flex-center">
-    <q-form
-      @submit="save"
-      v-if="tv"
-    >
-      <div class="q-gutter-md q-pl-md">
-
+    <q-form @submit="save" v-if="tv">
+      <div class="q-gutter-md">
         <q-input
           autofocus
           label="Tv Name"
           v-model="tv.name"
+          class="full-width"
           filled
         ></q-input>
         <q-input
@@ -66,10 +63,7 @@
         >Delete</q-btn>
       </div>
     </q-form>
-    <q-spinner-pie
-      v-else
-      size="20vmin"
-    />
+    <q-spinner-pie v-else size="20vmin" />
   </q-page>
 </template>
 
@@ -99,8 +93,15 @@
         this.tv.save().then(res=>this.$router.go(-1));
       },
       remove(){
+        this.$q.dialog({
+        title: 'Confirm',
+        message: `Would you like to delete ${this.tv.name}?`,
+        cancel: true,
+        persistent: true
+      }).onOk(() => {
         this.tv.remove().then(res=>this.$router.go(-1));
-      }
+      })
     }
+  }
   }
 </script>
