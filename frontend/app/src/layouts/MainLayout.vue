@@ -2,31 +2,18 @@
   <q-layout view="lHh Lpr lFf">
     <SillyAnimations />
     <q-header class="transparent">
-      <q-toolbar class="transparent">
-
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="leftDrawerOpen = !leftDrawerOpen"
-        />
-        <q-btn
-          flat
-          dense
-          round
-          icon="fas fa-arrow-left"
-          aria-label="Back"
-          @click="$router.go(-1)"
-        />
-        <q-toolbar-title class="text-uppercase text-weight-light">
-          The Rubenstahl App
-        </q-toolbar-title>
-
+      <h1 style="padding-left:20vw;font-size:10vmin;opacity:0.3">
+        <q-icon
+          :name="$route.meta.icon"
+          size="20vmin"
+          class="q-pr-xl"
+        ></q-icon>
+        {{$route.name}}
+      </h1>
+      <q-toolbar>
+        <Breadcrumbs />
       </q-toolbar>
     </q-header>
-
 
     <q-page-container class="cover">
       <!-- This is where pages get injected -->
@@ -42,11 +29,12 @@
 <script>
   import EssentialLink from 'components/EssentialLink'
   import SillyAnimations from 'components/SillyAnimations'
+  import Breadcrumbs from 'components/Breadcrumbs'
   export default {
     name: 'MainLayout',
 
     components: {
-      EssentialLink, SillyAnimations
+      EssentialLink, SillyAnimations, Breadcrumbs
     },
 
     data () {

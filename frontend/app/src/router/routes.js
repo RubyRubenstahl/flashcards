@@ -22,23 +22,39 @@ const routes = [
   },
   {
     path: "/app",
+    name: "Home",
+    meta: { icon: "fas fa-home" },
     component: () => import("layouts/MainLayout"),
     children: [
-      { path: "", component: () => import("pages/Index.vue") },
-      { path: "tv", component: () => import("pages/tv/TvMenu.vue") },
+      {
+        path: "",
+        component: () => import("pages/Index.vue"),
+        name: "Home",
+        meta: { icon: "fas fa-home" },
+      },
+      {
+        path: "tv",
+        component: () => import("pages/tv/TvMenu.vue"),
+        name: "TV",
+        meta: { icon: "tv" },
+      },
       {
         path: "tv/settings",
         component: () => import("pages/tv/TvSettings.vue"),
+        name: "TV Settings",
+        meta: { icon: "fas fa-cog" },
       },
       {
         path: "tv/new",
+        name: "Add TV",
         component: () => import("pages/tv/EditTv.vue"),
-        meta: { mode: "new" },
+        meta: { mode: "new", icon: "fas fa-plus-circle" },
       },
       {
         path: "tv/edit/:id",
         component: () => import("pages/tv/EditTv.vue"),
-        meta: { mode: "edit" },
+        name: "TV Settings",
+        meta: { mode: "edit", icon: "fas fa-edit" },
       },
     ],
   },
