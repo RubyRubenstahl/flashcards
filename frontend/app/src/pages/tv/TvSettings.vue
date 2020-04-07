@@ -27,7 +27,7 @@
             title: "Add Tv",
             icon: "tv",
             actionIcon: "fas fa-plus-circle",
-            to: "/app/tv/settings",
+            to: "/app/tv/new",
             color: "#00FFFF22"          },
 
         ]
