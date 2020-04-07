@@ -1,7 +1,5 @@
 <template>
-  <q-page class="flex flex-center">
     <HexButtonGroup :buttons="buttons" />
-  </q-page>
 </template>
 
 <script>

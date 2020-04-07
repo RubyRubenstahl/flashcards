@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-center q-gutter-md q-pa-lg">
+    <div class="flex q-gutter-md q-pa-lg">
         <HexButton v-for="button in buttons" v-bind="button" :key="button.name"/>
     </div>
 </template>

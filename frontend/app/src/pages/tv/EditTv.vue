@@ -1,5 +1,4 @@
 <template>
-  <q-page class="flex flex-center">
     <q-form @submit="save" v-if="tv">
       <div class="q-gutter-md">
         <q-input
@@ -64,7 +63,6 @@
       </div>
     </q-form>
     <q-spinner-pie v-else size="20vmin" />
-  </q-page>
 </template>
 
 <script>

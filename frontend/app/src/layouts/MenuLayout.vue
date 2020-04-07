@@ -1,26 +1,19 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <SillyAnimations />
-    <q-header class="transparent">
-      <h1 style="padding-left:20vw;font-size:10vmin;opacity:0.3">
-        <q-icon
-          :name="$route.meta.icon"
-          size="20vmin"
-          class="q-pr-xl"
-        ></q-icon>
-        {{$route.name}}
-      </h1>
-      <q-toolbar>
-        <Breadcrumbs />
-      </q-toolbar>
-    </q-header>
 
     <q-page-container class="cover">
-      <!-- This is where pages get injected -->
-      <transition>
-        <router-view />
-      </transition>
 
+      <q-page class="flex column">
+
+          <Breadcrumbs  style="padding-left:20vw; padding-top:10vh"/>
+
+
+        <div class="full-width flex flex-center">
+
+            <router-view />
+        </div>
+      </q-page>
     </q-page-container>
 
   </q-layout>

@@ -20,11 +20,12 @@ const routes = [
       },
     ],
   },
+
   {
     path: "/app",
     name: "Home",
     meta: { icon: "fas fa-home" },
-    component: () => import("layouts/MainLayout"),
+    component: () => import("layouts/MenuLayout"),
     children: [
       {
         path: "",
@@ -41,27 +42,35 @@ const routes = [
       {
         path: "tv/settings",
         component: () => import("pages/tv/TvSettings.vue"),
-        name: "TV Settings",
+        name: "Settings",
         meta: { icon: "fas fa-cog" },
-      },
-      {
-        path: "tv/new",
-        name: "Add TV",
-        component: () => import("pages/tv/EditTv.vue"),
-        meta: { mode: "new", icon: "fas fa-plus-circle" },
-      },
-      {
-        path: "tv/edit/:id",
-        component: () => import("pages/tv/EditTv.vue"),
-        name: "TV Settings",
-        meta: { mode: "edit", icon: "fas fa-edit" },
       },
     ],
   },
 
   {
+    path: "/app/tv",
+    name: "TV",
+    component: () => import("layouts/FormLayout.vue"),
+    children: [
+      {
+        path: "new",
+        name: "Add TV",
+        component: () => import("pages/tv/EditTv.vue"),
+        meta: { mode: "new", icon: "fas fa-plus-circle" },
+      },
+      {
+        path: "edit/:id",
+        name: "Edit TV Settings",
+        component: () => import("pages/tv/EditTv.vue"),
+        name: "Edit TV Settings",
+        meta: { mode: "edit", icon: "fas fa-edit" },
+      },
+    ],
+  },
+  {
     path: "/app/setup",
-    component: () => import("layouts/MainLayout"),
+    component: () => import("layouts/MenuLayout"),
   },
 ];
 
