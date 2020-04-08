@@ -36,11 +36,13 @@
     },
     methods: {
       logout () {
+        const router = this.$router;
         this.$store.dispatch('auth/logout', {
-        }).then(res => {
+        }).finally(res => {
+          localStorage.clear();
           setTimeout(() => {
-            this.$router.push('/app')
-          }, 5000)
+            location.replace('/#/login');
+          }, 2000)
         })
       }
     }

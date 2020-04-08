@@ -27,22 +27,25 @@ export default function ({ store }) {
   });
 
   Router.beforeEach((to, from, next) => {
-    console.log(store);
-    console.log(to);
-    const loggedIn = !!store.state.auth.user;
-
-    if (!loggedIn && !to.path.startsWith("/login")) {
-      console.log("Not logged in. Redirecting");
-      next("/login");
+    if (!to.fullPath.startsWith('/app')) {
+      return next();
     }
-
-    if (loggedIn && !to.path.startsWith("/app")) {
-      console.log("Logged in. Redirecting");
-      next("/app");
-    }
-
-    next();
+   store
+     .dispatch("auth/authenticate")
+     .then(response => {
+       next();
+     })
+     .catch(error => {
+       if (!error.message.includes("Could not find stored JWT")) {
+         console.log("JWT Authentication failed. Redirecting to login screen.", error);
+       }
+       next("/login");
+     });
+    return next();
   });
+
+
+
 
   return Router;
 }

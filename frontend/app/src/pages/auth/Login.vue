@@ -7,7 +7,7 @@
           label="Username"
           v-model="username"
           class="full-width"
-        filled
+          filled
         ></q-input>
         <q-input
           label="Password"
@@ -15,8 +15,6 @@
           v-model="password"
           class="full-width"
           filled
-        
-
         ></q-input>
         <div
           class="text-red full-width flex flex-center"
@@ -43,21 +41,41 @@
     components: { AuthPageWrapper },
     data () {      return {
         username: null,
-        password: null
+        password: null,
+        prevRoute:null
       }
     },
     computed: {
-      ...mapState('auth', ['errorOnAuthenticate', 'isAuthenticatePending'])
+      ...mapState('auth', ['errorOnAuthenticate', 'isAuthenticatePending']),
+
+    },
+    beforeRouteEnter (to, from, next) {
+      next(vm => {
+        vm.prevRoute = from
+      })
     },
     methods: {
+      redirectUrl () {
+        const pendingRoute = this.$router.history.pending || this.prevRoute;
+        const path = pendingRoute && pendingRoute.path;
+        if(typeof path ==='string' && path.startsWith('/app')){
+            return path;
+        }else{
+          return '/app'
+        }
+        
+      },
       login () {
+        console.log('Logging in')
+        const redirectUrl = this.redirectUrl();
+        const router = this.$router;
         this.$store.dispatch('auth/authenticate', {
           strategy: 'local',
           username: this.username,
           password: this.password
         }).then(res => {
-          this.$router.push('/app')
-        })
+          router.push(redirectUrl);
+        }).catch(err => console.error(err.message, err))
       }
     }
   }
