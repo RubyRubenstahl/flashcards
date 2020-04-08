@@ -9,7 +9,8 @@ module.exports = function (app) {
   const schema = new Schema(
     {
       name: { type: String, required: true },
-      icon: { type: String, default: 'tv'},
+      icon: { type: String, default: 'tv' },
+      imageUrl: {type: String},
       roku: {
         ip: { type: String, required: true },
         port: { type: Number, default: 1900 },
