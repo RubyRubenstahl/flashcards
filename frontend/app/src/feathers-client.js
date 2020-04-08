@@ -35,6 +35,7 @@ const {
   serverAlias: "api", // optional for working with multiple APIs (this is the default value)
   idField: "_id", // Must match the id field in your database table/collection
   whitelist: ["$regex", "$options"],
+  debug:true
 });
 
 export { makeAuthPlugin, makeServicePlugin, BaseModel, models, FeathersVuex };
