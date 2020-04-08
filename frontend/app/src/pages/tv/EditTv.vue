@@ -11,6 +11,12 @@
         <q-input
           label="Icon"
           v-model="tv.icon"
+          class="full-width"
+          filled
+        ></q-input>
+        <q-input
+          label="Image filename"
+          v-model="tv.imageUrl"
           class="full-width q-pb-lg"
           filled
         ></q-input>
