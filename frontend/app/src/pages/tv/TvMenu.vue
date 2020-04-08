@@ -20,10 +20,10 @@
             ...button, 
             to: `/app/tv/remote/${button._id}`,
           })),
-          {
-            title: "Settings",
-            icon: "fas fa-cog",
-            to: "/app/tv/settings",
+             {
+            title: "Add a Tv",
+            icon: "fas fa-plus-circle",
+            to: "/app/tv/new",
             color: "#00FFFF22"          },
 
         ]
