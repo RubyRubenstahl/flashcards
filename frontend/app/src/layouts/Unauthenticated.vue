@@ -1,18 +1,11 @@
 <template>
   <q-layout view="hHh Lpr fFf">
-    <!-- Be sure to play with the Layout demo on docs -->
     <SillyAnimations/>
-
     <q-page-container class="cover">
-      <!-- This is where pages get injected -->
-      <transition
-
-      >
+      <transition>
         <router-view />
       </transition>
-
     </q-page-container>
-
   </q-layout>
 </template>
 
@@ -30,7 +23,7 @@ import SillyAnimations from 'components/SillyAnimations'
     }
   }
 </script>
-<style >
+<style scoped>
 .cover {
   background-image: linear-gradient(
       to bottom,
