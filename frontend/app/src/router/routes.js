@@ -1,3 +1,4 @@
+import tvRoutes from './tvRoutes'
 
 const routes = [
   {
@@ -11,17 +12,6 @@ const routes = [
     children: [{ path: "", component: () => import("pages/auth/Logout.vue") }]
   },
   {
-    path: "/app/tv/remote/",
-    component: () => import("layouts/TvRemoteLayout"),
-    children: [
-      {
-        path: ":id",
-        component: () => import("pages/tv/TvRemote.vue")
-      }
-    ]
-  },
-
-  {
     path: "/app",
     name: "Home",
     meta: { icon: "fas fa-home" },
@@ -32,12 +22,6 @@ const routes = [
         component: () => import("pages/Index.vue"),
         name: "Home",
         meta: { icon: "fas fa-home" }
-      },
-      {
-        path: "tv",
-        component: () => import("pages/tv/TvMenu.vue"),
-        name: "TV",
-        meta: { icon: "tv" }
       },
       {
         path: "admin",
@@ -54,26 +38,6 @@ const routes = [
     ]
   },
 
-  {
-    path: "/app/tv",
-    name: "TV",
-    component: () => import("layouts/FormLayout.vue"),
-    children: [
-      {
-        path: "new",
-        name: "Add TV",
-        component: () => import("pages/tv/EditTv.vue"),
-        meta: { mode: "new", icon: "fas fa-plus-circle" }
-      },
-      {
-        path: "edit/:id",
-        name: "Edit TV Settings",
-        component: () => import("pages/tv/EditTv.vue"),
-        name: "Edit TV Settings",
-        meta: { mode: "edit", icon: "fas fa-edit" }
-      }
-    ]
-  },
   {
     path: "/app/admin/users",
     name: "Users",
@@ -98,15 +62,16 @@ const routes = [
   {
     path: "/app/setup",
     component: () => import("layouts/MenuLayout")
-  }
+  },
+  ...tvRoutes
 ];
 
 // Always leave this as last one
-if (process.env.MODE !== 'ssr') {
+if (process.env.MODE !== "ssr") {
   routes.push({
-    path: '*',
-    component: () => import('pages/Error404.vue')
-  })
+    path: "*",
+    component: () => import("pages/Error404.vue")
+  });
 }
 
-export default routes
+export default routes;
