@@ -39,7 +39,6 @@
     computed: {
       ...mapGetters({ getTv: 'tv/get' }),
       roku(){
-          debugger;
 
         if(this.tv && this.tv.roku && this.tv.roku.data){
           return this.tv.roku.data

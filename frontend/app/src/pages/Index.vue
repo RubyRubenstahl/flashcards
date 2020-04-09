@@ -30,6 +30,12 @@
             to: "/shopping-list",
             color: "#FF000022"
           },
+          {            
+            title: "Admin Panel",
+            icon: "fas fa-user-cog",
+            to: "/app/admin",
+            color: "#FF000022"
+          },
         ]
       }
     }

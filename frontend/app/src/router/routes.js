@@ -1,3 +1,4 @@
+import tvRoutes from './tvRoutes'
 
 const routes = [
   {
@@ -7,24 +8,13 @@ const routes = [
   {
     path: "/login",
     component: () => import("layouts/Unauthenticated.vue"),
-    children: [{ path: "", component: () => import("pages/auth/Login.vue") }],
+    children: [{ path: "", component: () => import("pages/auth/Login.vue") }]
   },
   {
     path: "/logout",
     component: () => import("layouts/Unauthenticated.vue"),
-    children: [{ path: "", component: () => import("pages/auth/Logout.vue") }],
+    children: [{ path: "", component: () => import("pages/auth/Logout.vue") }]
   },
-  {
-    path: "/app/tv/remote/",
-    component: () => import("layouts/TvRemoteLayout"),
-    children: [
-      {
-        path: ":id",
-        component: () => import("pages/tv/TvRemote.vue"),
-      },
-    ],
-  },
-
   {
     path: "/app",
     name: "Home",
@@ -35,55 +25,57 @@ const routes = [
         path: "",
         component: () => import("pages/Index.vue"),
         name: "Home",
-        meta: { icon: "fas fa-home" },
+        meta: { icon: "fas fa-home" }
       },
       {
-        path: "tv",
-        component: () => import("pages/tv/TvMenu.vue"),
-        name: "TV",
-        meta: { icon: "tv" },
+        path: "admin",
+        component: () => import("pages/admin/menu.vue"),
+        name: "Admin Panel",
+        meta: { icon: "fas fa-user-cog" }
       },
       {
-        path: "tv/settings",
-        component: () => import("pages/tv/TvSettings.vue"),
-        name: "Settings",
-        meta: { icon: "fas fa-cog" },
-      },
-    ],
+        path: "admin/users",
+        component: () => import("pages/admin/users.vue"),
+        name: "Users",
+        meta: { icon: "fas fa-users" }
+      }
+    ]
   },
 
   {
-    path: "/app/tv",
-    name: "TV",
+    path: "/app/admin/users",
+    name: "Users",
     component: () => import("layouts/FormLayout.vue"),
     children: [
       {
         path: "new",
-        name: "Add TV",
-        component: () => import("pages/tv/EditTv.vue"),
-        meta: { mode: "new", icon: "fas fa-plus-circle" },
+        name: "Add User",
+        component: () => import("pages/admin/EditUser.vue"),
+        meta: { mode: "new", icon: "fas fa-plus-circle" }
       },
       {
-        path: "edit/:id",
-        name: "Edit TV Settings",
-        component: () => import("pages/tv/EditTv.vue"),
-        name: "Edit TV Settings",
-        meta: { mode: "edit", icon: "fas fa-edit" },
-      },
-    ],
+        path: "settings/:id",
+        name: "Edit User",
+        component: () => import("pages/admin/EditUser.vue"),
+        name: "User Settings",
+        meta: { mode: "edit", icon: "fas fa-cog" }
+      }
+    ]
   },
+
   {
     path: "/app/setup",
-    component: () => import("layouts/MenuLayout"),
+    component: () => import("layouts/MenuLayout")
   },
+  ...tvRoutes
 ];
 
 // Always leave this as last one
-if (process.env.MODE !== 'ssr') {
+if (process.env.MODE !== "ssr") {
   routes.push({
-    path: '*',
-    component: () => import('pages/Error404.vue')
-  })
+    path: "*",
+    component: () => import("pages/Error404.vue")
+  });
 }
 
-export default routes
+export default routes;
