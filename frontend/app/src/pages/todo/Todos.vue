@@ -1,19 +1,24 @@
 <template>
-    <FeathersVuexFind service="users" :query="{}">
-    <section class="admin-categories" slot-scope="{ items: users }">
-      <q-checkbox v-for="user in users" :key="user._id" v-model="selectedUsers">{{user.username}}</q-checkbox>
-    </section>
-  </FeathersVuexFind>
+  <section class="admin-categories">
+    <UserSelector v-model="selectedUsers"/>
+    
+  </section>
 </template>
 <script>
+  import { mapGetters } from 'vuex'
+  import UserSelector from './UserSelector';
 
-export default {
-  name: 'Todos',
-  data(){
-    return {
-      selectedUsers:[]
+  export default {
+    name: 'Todos',
+    components: {UserSelector},
+    data () {
+      return {
+        selectedUsers:[]
+      }
+    },
+    computed: {
+
     }
   }
-}
 </script>
 
