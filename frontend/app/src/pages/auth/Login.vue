@@ -25,7 +25,6 @@
         <q-btn
           type="submit"
           class="full-width"
-          :loading="isAuthenticatePending"
           color="primary"
         >Login</q-btn>
       </div>

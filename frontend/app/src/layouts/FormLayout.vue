@@ -14,7 +14,7 @@
     <q-page-container class="cover ">
       <q-page class="flex content-center column text-center full-width" >
         <h1 class="text-h4" style="opacity:.5"><q-icon :name="$route.meta.icon"></q-icon> {{$route.name}}</h1>
-        <div style="max-width:500px">
+        <div style="width:500px">
           <transition>
             <router-view />
           </transition>

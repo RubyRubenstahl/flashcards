@@ -12,16 +12,26 @@ module.exports = function(app) {
       task: { type: String, required: true },
       description: { type: String },
       userId: { type: Types.ObjectId, required: true },
-      dueMode: {
-        type: String,
-        enum: ["onDayOfWeek", "byDayOfWeek", "onDate", "byDate"],
-        required: true
+      due: {
+        mode: {
+          type: String,
+          enum: ["on", "by"],
+          required: true
+        },
+        value: {
+          type: {},
+          required: true
+        }
       },
-
-      dueOn: { type: {}, required: true },
       completed: { type: Boolean },
       repeat: {
-        mode: { type: String, default: "once", enum: ["weekly"], required: true },
+        mode: {
+          type: String,
+          default: "once",
+          enum: ["weekly", "once"],
+          required: true
+        },
+
       }
     },
     {

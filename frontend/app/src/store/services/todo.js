@@ -15,15 +15,15 @@ class Todo extends BaseModel {
     return {
       task: '',
       description: '',
-      completed: feathersClient,
+      completed: false,
       due: {
-        mode: 'onDate',
-        date: null
+        mode: 'on',
+        value: null
       },
       repeat: {
         mode: 'once',
-        date: null,
-        daysOfWeek:[]
+        
+        value: null
       }
 
     }
