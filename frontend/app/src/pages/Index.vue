@@ -20,7 +20,12 @@
             to: "/budgeting",
             color: "#00FF4422"
           },
-          {            title: "Shopping List",
+          {title: "To Do",
+            icon: "fas fa-check",
+            to: "/app/todo",
+            color: "#ffb10047"
+          },
+          {title: "Shopping List",
             icon: "shopping_cart",
             to: "/shopping-list",
             color: "#AA44FF33"
