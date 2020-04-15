@@ -1,4 +1,11 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
+const {alterItems} = require('feathers-hooks-common')
+const addUsername = alterItems(async (item, context) => {
+  const user = await context.app.service('users').get(item.userId);
+  item.username = user.username
+  return item
+}) 
+
 
 module.exports = {
   before: {
@@ -12,7 +19,7 @@ module.exports = {
   },
 
   after: {
-    all: [],
+    all: [addUsername],
     find: [],
     get: [],
     create: [],
