@@ -22,7 +22,7 @@ exports.Roku = class Roku {
     return data;
 
     } catch (err) {
-      console.err("Failed to get roku data. Reason: " + err.message);
+      console.error("Failed to get roku data. Reason: " + err.message);
        return null
     }
   }
