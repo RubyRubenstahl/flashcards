@@ -1,13 +1,15 @@
 <template>
+  <FeathersVuexFormWrapper :item="todo" watch  v-if="todo">
+    <template v-slot="{ clone, save, reset }">
   <q-form
-    @submit="save"
+    @submit="save().then(()=>$router.go(-1))"
     v-if="todo"
   >
     <div class="q-gutter-lg flex column full-width">
       <q-input
         autofocus
         label="Task"
-        v-model="todo.task"
+        v-model="clone.task"
         class="full-width"
         filled
       >
@@ -18,20 +20,20 @@
 
       <q-input
         label="Description"
-        v-model="todo.description"
+        v-model="clone.description"
         class="full-width"
         type="textarea"
         filled
       />
       <q-checkbox
         label="Complete"
-        v-model="todo.completed"
+        v-model="clone.completed"
         class="full-width"
         filled
       />
 
       <q-select
-        v-model="todo.userId"
+        v-model="clone.userId"
         :options="users"
         option-label="username"
         option-value="_id"
@@ -50,7 +52,7 @@
 
       <q-btn-toggle
         class="full-width"
-        v-model="todo.repeat.mode"
+        v-model="clone.repeat.mode"
         spread
         rounded
         unelevated
@@ -64,7 +66,7 @@
       <q-btn-group class="row full-width">
         <q-btn-toggle
           glossy
-          v-model="todo.due.mode"
+          v-model="clone.due.mode"
           toggle-color="primary"
           :options="[
           {label: 'On', value: 'on'},
@@ -76,10 +78,10 @@
           inset
         />
         <q-select
-          v-model="todo.due.value"
+          v-model="clone.due.value"
           class="col"
           glossy
-          v-if="todo.repeat.mode==='weekly' && todo.due.mode==='on'"
+          v-if="clone.repeat.mode==='weekly' && clone.due.mode==='on'"
           filled
           :options="Object.freeze([
           {label: 'Sun', value: 0},
@@ -104,7 +106,7 @@
               </q-item-section>
               <q-item-section side>
                 <q-toggle
-                  v-model="todo.due.value"
+                  v-model="clone.due.value"
                   :val="scope.opt.value"
                 />
               </q-item-section>
@@ -114,8 +116,8 @@
 
         <q-select
           class="col"
-          v-model="todo.due.value"
-          v-if="todo.repeat.mode==='weekly' && todo.due.mode==='by'"
+          v-model="clone.due.value"
+          v-if="clone.repeat.mode==='weekly' && clone.due.mode==='by'"
           toggle-color="primary"
           filled
           :options="Object.freeze([
@@ -134,13 +136,13 @@
         <q-btn-dropdown
           class="col"
           style="background-color:#FFFFFF22"
-          :label="todo.due.value | humanizeDate"
+          :label="clone.due.value | humanizeDate"
           size="lg"
-          v-if="todo.repeat.mode==='once'"
+          v-if="clone.repeat.mode==='once'"
           ref="dateBtn"
         >
           <q-date
-            v-model="todo.due.value"
+            v-model="clone.due.value"
             @input="$refs.dateBtn && $refs.dateBtn.hide()"
           />
         </q-btn-dropdown>
@@ -167,6 +169,8 @@
       >Delete</q-btn>
     </div>
   </q-form>
+    </template>
+  </FeathersVuexFormWrapper>
   <q-spinner-pie
     v-else
     size="20vmin"
@@ -175,7 +179,7 @@
 
 <script>
   import { mapGetters } from 'vuex';
-
+  import {clone} from 'lodash'
   export default {
     name: 'EditTodo',
     data () {
@@ -185,31 +189,25 @@
     },
     created () {
       const { Todo } = this.$FeathersVuex.api
+      console.log(Todo)
+      let todo;
       if (this.$route.params.id) {
-        this.$store.dispatch('todo/get', this.$route.params.id).then(res => this.todo = res.clone())
+        const newTodo  = new Todo();
+        const existingTodo = Todo.getFromStore(this.$route.params.id);
+        this.$set(this, 'todo', Object.assign(newTodo, existingTodo))
       } else {
-        this.todo = new Todo({ userId: this.currentUser._id }).clone()
+        todo = new Todo({})
+      }
+      if(todo){
+        this.todo=todo ;
       }
     },
     methods: {
-      save () {
-        const $q = this.$q
-        this.todo.save().then(res => this.$router.go(-1))
-          .catch(err => {
-            $q.notify({
-              message: err.message,
-              icon: 'fas fa-error',
-              progress: true,
-              color: 'negative',
-              textColor: 'white',
-              position: 'top'
-            })
-          });
-      },
+      
       remove () {
         this.$q.dialog({
           title: 'Confirm',
-          message: `Would you like to delete ${this.todo.name}?`,
+          message: `Would you like to delete theis todo?`,
           cancel: true,
           persistent: true
         }).onOk(() => {
@@ -223,36 +221,36 @@
         currentUser: 'auth/user'
       })
     },
-    watch: {
-      'todo.repeat.mode' (newVal, oldVal) {
-        if (newVal === oldVal) return;
-        console.log('repeat.mode update')
-        if (newVal === 'once') {
-          this.todo.due.value = new Date()
-        }
-        if (newVal === 'weekly') {
-          if (this.todo.due.mode === 'on') {
-            this.$set(this.todo.due, 'value', [1, 2, 3, 4, 5])
-          }
-          if (this.todo.due.mode === 'by') {
-            this.$set(this.todo.due, 'value', 5)
-          }
+    // watch: {
+    //   'todo.repeat.mode' (newVal, oldVal) {
+    //     if (newVal === oldVal) return;
+    //     console.log('repeat.mode update')
+    //     if (newVal === 'once') {
+    //       this.todo.due.value = new Date()
+    //     }
+    //     if (newVal === 'weekly') {
+    //       if (this.todo.due.mode === 'on') {
+    //         this.$set(this.todo.due, 'value', [1, 2, 3, 4, 5])
+    //       }
+    //       if (this.todo.due.mode === 'by') {
+    //         this.$set(this.todo.due, 'value', 5)
+    //       }
 
-        }
-      },
+    //     }
+    //   },
 
-      'todo.due.mode' (newVal, oldVal) {
-        if (newVal === oldVal) return;
-        console.log('due.mode update')
-        if (this.todo.repeat.mode === 'weekly') {
-          if (newVal === 'on') {
-            this.$set(this.todo.due, 'value', [1, 2, 3, 4, 5])
-          }
-          if (newVal === 'by') {
-            this.$set(this.todo.due, 'value', 5)
-          }
-        }
-      }
-    }
+    //   'todo.due.mode' (newVal, oldVal) {
+    //     if (newVal === oldVal) return;
+    //     console.log('due.mode update')
+    //     if (this.todo.repeat.mode === 'weekly') {
+    //       if (newVal === 'on') {
+    //         this.$set(this.todo.due, 'value', [1, 2, 3, 4, 5])
+    //       }
+    //       if (newVal === 'by') {
+    //         this.$set(this.todo.due, 'value', 5)
+    //       }
+    //     }
+    //   }
+    // }
   }
 </script>

@@ -1,51 +1,53 @@
 <template>
+    
+  <FeathersVuexFormWrapper :item="tv" watch  v-if="tv">
+    <template v-slot="{ clone, save, reset }">
   <q-form
-    @submit="save"
-    v-if="tv"
+    @submit="save().then(()=>$router.go(-1))"
   >
     <div class="q-gutter-md">
       <q-input
         autofocus
         label="Tv Name"
-        v-model="tv.name"
+        v-model="clone.name"
         class="full-width"
         filled
       ></q-input>
       <q-input
         label="Icon"
-        v-model="tv.icon"
+        v-model="clone.icon"
         class="full-width"
         filled
       ></q-input>
       <q-input
         label="Image filename"
-        v-model="tv.imageUrl"
+        v-model="clone.imageUrl"
         class="full-width q-pb-lg"
         filled
       ></q-input>
 
       <q-input
         label="Roku IP Address"
-        v-model="tv.roku.ip"
+        v-model="clone.roku.ip"
         class="full-width"
         filled
       ></q-input>
       <q-input
         label="Roku Port"
-        v-model="tv.roku.port"
+        v-model="clone.roku.port"
         class="full-width q-pb-lg"
         filled
       ></q-input>
 
       <q-input
         label="LIRC IP Address"
-        v-model="tv.lirc.ip"
+        v-model="clone.lirc.ip"
         class="full-width"
         filled
       ></q-input>
       <q-input
         label="LIRC Port"
-        v-model="tv.roku.port"
+        v-model="clone.roku.port"
         class="full-width"
         filled
       ></q-input>
@@ -64,13 +66,15 @@
       <q-btn
         class="full-width q-mt-lg"
         color="negative"
-        @click="remove"
+        @click="remove(clone)"
         v-if="!!$route.params.id"
         icon="delete"
         outline
       >Delete</q-btn>
     </div>
   </q-form>
+    </template>
+  </FeathersVuexFormWrapper>
   <q-spinner-pie
     v-else
     size="20vmin"
@@ -92,9 +96,11 @@
       console.log(Tv)
       let tv;
       if (this.$route.params.id) {
-        tv  = Tv.getFromStore(this.$route.params.id)
+        const newTv  = new Tv();
+        const existingTv = Tv.getFromStore(this.$route.params.id);
+        this.$set(this, 'tv', Object.assign(newTv, existingTv))
       } else {
-        tv = new Tv({}).clone()
+        tv = new Tv({})
       }
       if(tv){
         this.tv=tv ;
@@ -102,17 +108,15 @@
     },
 
     methods: {
-      save () {
-        this.tv.save().then(res => this.$router.go(-1));
-      },
-      remove () {
+  
+      remove (clone) {
         this.$q.dialog({
           title: 'Confirm',
-          message: `Would you like to delete ${this.tv.name}?`,
+          message: `Would you like to delete ${clone.name}?`,
           cancel: true,
           persistent: true
         }).onOk(() => {
-          this.tv.remove().then(res => this.$router.go(-1));
+          clone.remove().then(res => this.$router.go(-1));
         })
       }
     }
