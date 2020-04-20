@@ -106,9 +106,9 @@ module.exports = function (ctx) {
       workboxPluginMode: "GenerateSW", // 'GenerateSW' or 'InjectManifest'
       workboxOptions: {}, // only for GenerateSW
       manifest: {
-        name: "Rubenstahl App",
-        short_name: "Rubenstahl App",
-        description: "An app for the Rubenstahl family",
+        name: "Krotech Partner Manager",
+        short_name: "KT Partner Mgr",
+        description: "An application for managing partner & client relatioinships",
         display: "standalone",
         orientation: "portrait",
         background_color: "#ffffff",

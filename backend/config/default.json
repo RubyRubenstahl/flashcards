@@ -40,5 +40,6 @@
       }
     }
   },
-  "mongodb": "mongodb://localhost:27017/rubenstahl_app"
+
+  "mongodb": "mongodb://localhost:27017/kt_partners"
 }
