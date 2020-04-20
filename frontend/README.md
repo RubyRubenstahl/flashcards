@@ -1,6 +1,6 @@
-# Rubenstahl App (app)
+# KrohTech Partner Manager (app)
 
-An app for the Rubenstahl family
+KrohTech Partner Manager
 
 ## Install the dependencies
 ```bash

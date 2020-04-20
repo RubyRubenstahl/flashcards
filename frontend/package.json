@@ -1,9 +1,9 @@
 {
-  "name": "app",
+  "name": "kt-partner-manager",
   "version": "0.0.1",
   "description": "An app for the Rubenstahl family",
-  "productName": "Rubenstahl App",
-  "cordovaId": "org.cordova.quasar.app",
+  "productName": "KrohTech Partner Management",
+  "cordovaId": "org.cordova.krohtech.kt-partner-manager",
   "capacitorId": "",
   "author": "Ruby Rubenstahl <ruby@ruby-lighting.com>",
   "private": true,
