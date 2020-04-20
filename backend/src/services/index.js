@@ -6,4 +6,5 @@ const incomingMail = require('./mail/incoming/incoming.service');
 module.exports = function (app) {
   app.configure(users);
   app.configure(todos);
+  app.configure(incomingMail);
 };
