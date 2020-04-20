@@ -1,6 +1,5 @@
 <template>
   <q-layout view="hHh Lpr fFf">
-    <SillyAnimations/>
     <q-page-container class="cover">
       <transition>
         <router-view />
@@ -10,11 +9,9 @@
 </template>
 
 <script>
-import SillyAnimations from 'components/SillyAnimations'
 
   export default {
      name: 'Unauthenticated',
-    components:{SillyAnimations},
     data () {
       return {
 

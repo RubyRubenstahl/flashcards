@@ -1,6 +1,5 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <SillyAnimations />
     <q-page-container class="cover">
       <q-page class="flex column">
         <Breadcrumbs style="padding-left:20vw; padding-top:10vh" />
@@ -13,12 +12,11 @@
 </template>
 
 <script>
-  import SillyAnimations from 'components/SillyAnimations'
   import Breadcrumbs from 'components/Breadcrumbs'
   export default {
     name: 'MenuLayout',
     components: {
-      SillyAnimations, Breadcrumbs
+     Breadcrumbs
     },
     data () {
       return {

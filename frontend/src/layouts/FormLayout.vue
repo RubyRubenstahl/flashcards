@@ -1,6 +1,5 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <SillyAnimations />
      <q-header class="transparent ">
       <q-toolbar class="flex justify-end">
         <q-btn
@@ -25,13 +24,9 @@
 </template>
 
 <script>
-  import SillyAnimations from 'components/SillyAnimations'
   export default {
     name: 'FormLayout',
 
-    components: {
-      SillyAnimations
-    },
 
     data () {
       return {
