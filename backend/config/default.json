@@ -6,6 +6,9 @@
     "default": 10,
     "max": 50
   },
+  "sendgrid":{
+    "apiKey": "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"
+  },
   "authentication": {
     "entity": "user",
     "service": "users",
