@@ -110,3 +110,5 @@ $RECYCLE.BIN/
 lib/
 data/
 uploads/
+omxpipe
+report.*.json
