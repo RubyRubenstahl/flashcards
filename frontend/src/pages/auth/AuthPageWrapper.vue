@@ -15,7 +15,7 @@
       >
 
         <q-card-section class="flex flex-center">
-          <div class="text-h5 text-uppercase text-weight-light">{{title}}</div>
+          <div class="text-h6 text-uppercase text-weight-light">{{title}}</div>
           <div class="text-caption text-uppercase">{{subtitle}}</div>
         </q-card-section>
 
