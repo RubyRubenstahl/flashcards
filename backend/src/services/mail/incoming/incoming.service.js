@@ -15,7 +15,7 @@ module.exports = function (app) {
     "/mail/incoming",
     upload.any(),
     (req, res, next) => {
-      console.log(req.body);
+      req.body.files = req.files;
       return next();
     },
     new Incoming(options, app)
