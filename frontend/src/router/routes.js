@@ -1,5 +1,3 @@
-import tvRoutes from './tvRoutes'
-import toDoRoutes from './todoRoutes'
 
 const routes = [
   {
@@ -68,8 +66,6 @@ const routes = [
     path: "/app/setup",
     component: () => import("layouts/MenuLayout")
   },
-  ...tvRoutes,
-  ...toDoRoutes
 ];
 
 // Always leave this as last one

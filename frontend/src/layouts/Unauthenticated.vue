@@ -30,8 +30,8 @@ import SillyAnimations from 'components/SillyAnimations'
       rgba(3, 22, 85, 0.8),
       rgba(14, 11, 100, 0.75)
       
-    ),
-    url("/statics/login-background.jpg");
+    );
+    
   background-size: cover;
   background-position: center center;
 }
