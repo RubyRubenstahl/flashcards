@@ -23,7 +23,7 @@
     </q-header>
 
     <q-drawer show-if-above v-model="left" side="left" bordered>
-      <!-- drawer content -->
+      <MainMenu/>
     </q-drawer>
 
 
@@ -46,7 +46,10 @@
 </template>
 
 <script>
+import MainMenu from 'components/ui/MainMenu'
+
 export default {
+  components: {MainMenu},
   data () {
     return {
       left: false,
