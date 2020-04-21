@@ -27,7 +27,7 @@ const requireModule = require.context(
   // The path where the service modules live
   "./services",
   // Whether to look in subfolders
-  false,
+  true,
   // Only include .js files (prevents duplicate imports`)
   /.js$/
 );

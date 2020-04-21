@@ -1,8 +1,8 @@
 
 const routes = [
   {
-    path: '',
-    redirect: '/app'
+    path: "",
+    redirect: "/app"
   },
   {
     path: "/login",
@@ -14,18 +14,20 @@ const routes = [
     component: () => import("layouts/Unauthenticated.vue"),
     children: [{ path: "", component: () => import("pages/auth/Logout.vue") }]
   },
+  
   {
     path: "/app",
     name: "Home",
     meta: { icon: "fas fa-home" },
-    component: () => import("layouts/MenuLayout"),
+    component: () => import("layouts/MainLayout"),
     children: [
       {
         path: "",
-        component: () => import("pages/Index.vue"),
+        component: () => import("pages/mail/Inbox.vue"),
         name: "Home",
         meta: { icon: "fas fa-home" }
       },
+  
       {
         path: "admin",
         component: () => import("pages/admin/menu.vue"),
@@ -65,7 +67,7 @@ const routes = [
   {
     path: "/app/setup",
     component: () => import("layouts/MenuLayout")
-  },
+  }
 ];
 
 // Always leave this as last one
