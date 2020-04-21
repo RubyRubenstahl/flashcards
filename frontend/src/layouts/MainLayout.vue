@@ -5,21 +5,21 @@
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="left = !left" />
 
-        <q-toolbar-title>
-          <q-avatar>
+        <q-toolbar-title class="text-weight-thin text-uppercase">
+          <!-- <q-avatar>
             <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg">
-          </q-avatar>
-            {{$q}}
+          </q-avatar> -->
+            KrohTech Partner Managment
         </q-toolbar-title>
 
         <q-btn dense flat round icon="menu" @click="right = !right" />
       </q-toolbar>
 
-      <q-tabs align="left">
+      <!-- <q-tabs align="left">
         <q-route-tab to="/page1" label="Page One" />
         <q-route-tab to="/page2" label="Page Two" />
         <q-route-tab to="/page3" label="Page Three" />
-      </q-tabs>
+      </q-tabs> -->
     </q-header>
 
     <q-drawer show-if-above v-model="left" side="left" bordered>
@@ -34,10 +34,10 @@
     <q-footer elevated class="bg-grey-8 text-white">
       <q-toolbar>
         <q-toolbar-title>
-          <q-avatar>
+          <!-- <q-avatar>
             <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg">
           </q-avatar>
-          Title
+          Title -->
         </q-toolbar-title>
       </q-toolbar>
     </q-footer>
