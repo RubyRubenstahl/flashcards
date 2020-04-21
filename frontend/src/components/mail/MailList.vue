@@ -26,6 +26,9 @@
           <q-item-label>{{email.subject}}</q-item-label>
           <q-item-label caption>From: {{email.from}}</q-item-label>
         </q-item-section>
+        <q-item-section side>
+          <q-item-label>{{email.received | humanizeDuration}}</q-item-label>
+        </q-item-section>
       </template>
       <q-card>
         <q-card-section class="bg-white">
