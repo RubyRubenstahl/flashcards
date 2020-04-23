@@ -1,6 +1,5 @@
 <template>
      <q-expansion-item
-      v-model="expanded"
       :icon="icon"
       :label="title"
       :caption="subtitle"
