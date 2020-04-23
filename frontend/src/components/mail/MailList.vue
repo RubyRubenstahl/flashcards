@@ -47,7 +47,7 @@
     },
     props: {
       emails: {
-        type: [String]
+        type: Array
       }
     }
   }
