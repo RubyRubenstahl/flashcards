@@ -14,7 +14,7 @@ const routes = [
     component: () => import("layouts/Unauthenticated.vue"),
     children: [{ path: "", component: () => import("pages/auth/Logout.vue") }]
   },
-  
+
   {
     path: "/app",
     name: "Home",
@@ -27,7 +27,7 @@ const routes = [
         name: "Home",
         meta: { icon: "fas fa-home" }
       },
-  
+
       {
         path: "admin",
         component: () => import("pages/admin/menu.vue"),
@@ -44,14 +44,21 @@ const routes = [
   },
 
   {
-    path: "/app/admin/users",
+    path: "/app/settings/users",
     name: "Users",
-    component: () => import("layouts/FormLayout.vue"),
+    component: () => import("layouts/MainLayout.vue"),
     children: [
+      {
+        path: "",
+        name: "Users",
+        component: () => import("pages/settings/users/UserListPage.vue"),
+        meta: { mode: "new", icon: "fas fa-users" }
+      },
+
       {
         path: "new",
         name: "Add User",
-        component: () => import("pages/admin/EditUser.vue"),
+        component: () => import("pages/settings/users/NewUserPage.vue"),
         meta: { mode: "new", icon: "fas fa-plus-circle" }
       },
       {
