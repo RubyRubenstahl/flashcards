@@ -45,7 +45,7 @@
     },
     props: {
       users: {
-        type: [Object],
+        type: Array,
         required: true
       }
     }
