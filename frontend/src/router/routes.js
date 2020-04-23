@@ -51,7 +51,10 @@ const routes = [
       {
         path: "",
         name: "Users",
-        component: () => import("pages/settings/users/UserListPage.vue"),
+        components: {
+          default: () => import("pages/settings/users/UserListPage.vue"),
+          actions: () => import("components/users/UsersActionList.vue"),
+        },
         meta: { mode: "new", icon: "fas fa-users" }
       },
 
