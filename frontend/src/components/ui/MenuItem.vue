@@ -1,5 +1,5 @@
 <template>
-      <q-item :to="to" v-ripple>
+      <q-item :to="to" v-ripple   v-on="$listeners" v-bind="$attrs" clickable>
         <q-item-section avatar>
           <q-icon :name="icon" />
         </q-item-section>
@@ -30,6 +30,10 @@ export default {
     },
     icon: {
       type: String
+    },
+    click:{
+      type: Function,
+      default: ()=>{}
     }
   }
 }
