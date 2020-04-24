@@ -1,24 +1,29 @@
 <template>
   <q-page padding>
-    <FeathersVuexFind
-      service="users"
-      :query="{}"
-      watch="query"
-    >
-      <section
-        class="admin-categories"
-        slot-scope="{ items: users }"
-      >
-        <UserList :users="users" />
-      </section>
-    </FeathersVuexFind>
+
+    <UserList :users="users" />
   </q-page>
 </template>
 
 <script>
   import UserList from 'components/users/Userlist'
+  import { mapActions, mapGetters } from 'vuex';
   export default {
     name: 'UserListPage',
-    components: { UserList }
+    mounted(){
+      this.find();
+    },
+    components: { UserList },
+    computed:{
+      ...mapGetters({users:'users/list'})
+    },
+    methods:{
+      ...mapActions({find:'users/find'})
+    },
+    data () {
+      return {
+
+      }
+    }
   }
 </script>

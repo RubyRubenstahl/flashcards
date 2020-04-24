@@ -53,7 +53,7 @@ const routes = [
         name: "Users",
         components: {
           default: () => import("pages/settings/users/UserListPage.vue"),
-          actions: () => import("components/users/UsersActionList.vue"),
+          actions: () => import("components/users/UsersActionList.vue")
         },
         meta: { mode: "new", icon: "fas fa-users" }
       },
@@ -65,9 +65,9 @@ const routes = [
         meta: { mode: "new", icon: "fas fa-plus-circle" }
       },
       {
-        path: "settings/:id",
+        path: ":id",
         name: "Edit User",
-        component: () => import("pages/admin/EditUser.vue"),
+        component: () => import("pages/settings/users/EditUserPage.vue"),
         name: "User Settings",
         meta: { mode: "edit", icon: "fas fa-cog" }
       }
