@@ -40,7 +40,7 @@ export default function (/* { ssrContext } */) {
     modules: {
       // example
     },
-    plugins: [...servicePlugins, auth, vuexLocal.plugin],
+    plugins: [...servicePlugins, auth],
 
     // enable strict mode (adds overhead!)
     // for dev mode only
