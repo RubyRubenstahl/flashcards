@@ -1,9 +1,11 @@
 // Initializes the `users` service on path `/users`
 const { Users } = require('./users.class');
 const hooks = require('./users.hooks');
-const seed = require('./users.seed')
-module.exports = function (app) {
+const createModel = require('../../models/users.model');
+
+module.exports = function(app) {
   const options = {
+    Model: createModel(app),
     paginate: app.get('paginate')
   };
 
@@ -14,7 +16,6 @@ module.exports = function (app) {
   const service = app.service('users');
 
   service.hooks(hooks);
-  app.get('mongoClient').then(() => {
-    app.configure(seed);
-  })
+
+  
 };

@@ -1,5 +1,9 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
 
+// TODO: Allow admin user to be added on first run
+// TODO: Disallow duplicates
+
+
 const {
   hashPassword, protect
 } = require('@feathersjs/authentication-local').hooks;

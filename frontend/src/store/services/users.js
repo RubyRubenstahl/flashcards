@@ -1,7 +1,7 @@
 // src/store/services/users.js
 import feathersClient, {
   makeServicePlugin,
-  BaseModel,
+  BaseModel
 } from "../../feathers-client";
 
 class User extends BaseModel {
@@ -14,12 +14,16 @@ class User extends BaseModel {
   static instanceDefaults() {
     return {
       email: "",
-      firstName: '',
-      lastName: '',
+      firstName: "",
+      lastName: "",
       password: "",
-      username: '',
-      isAdmin: false, 
-      roles: ['']
+      isAdmin: false,
+      roles: [""],
+      phoneNumber: "",
+      companyId: "",
+      type: "contact",
+      canLogin: "",
+      rights: ""
     };
   }
 }
@@ -27,7 +31,7 @@ const servicePath = "users";
 const servicePlugin = makeServicePlugin({
   Model: User,
   service: feathersClient.service(servicePath),
-  servicePath,
+  servicePath
 });
 
 // Setup the client-side Feathers hooks.
@@ -39,7 +43,7 @@ feathersClient.service(servicePath).hooks({
     create: [],
     update: [],
     patch: [],
-    remove: [],
+    remove: []
   },
   after: {
     all: [],
@@ -48,7 +52,7 @@ feathersClient.service(servicePath).hooks({
     create: [],
     update: [],
     patch: [],
-    remove: [],
+    remove: []
   },
   error: {
     all: [],
@@ -57,8 +61,8 @@ feathersClient.service(servicePath).hooks({
     create: [],
     update: [],
     patch: [],
-    remove: [],
-  },
+    remove: []
+  }
 });
 
 export default servicePlugin;
