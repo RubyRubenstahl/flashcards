@@ -1,5 +1,6 @@
 <template>
   <q-list>
+    <MenuItem  title="Projects" icon = "fas fa-clipboard" to="/app/projects"/>
     <MenuGroup title="Settings" icon="fas fa-cog">
       <q-list class="q-ml-2">
         <MenuItem  title="Users" icon = "fas fa-users" to="/app/settings/users"/>
