@@ -18,7 +18,8 @@ class User extends BaseModel {
       lastName: '',
       password: "",
       username: '',
-      isAdmin: false
+      isAdmin: false, 
+      roles: ['']
     };
   }
 }
