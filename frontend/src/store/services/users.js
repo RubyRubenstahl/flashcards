@@ -14,7 +14,11 @@ class User extends BaseModel {
   static instanceDefaults() {
     return {
       email: "",
+      firstName: '',
+      lastName: '',
       password: "",
+      username: '',
+      isAdmin: false
     };
   }
 }
