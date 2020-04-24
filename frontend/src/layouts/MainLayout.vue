@@ -19,7 +19,7 @@
           <!-- <q-avatar>
             <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg">
           </q-avatar> -->
-          KrohTech Partner Managment
+          KrohTech Partner Management
         </q-toolbar-title>
 
         <q-btn
@@ -30,6 +30,7 @@
         >
           <q-menu>
             <router-view name="actions"></router-view>
+            <MenuItem title="Sign Out" icon="logout" to="/logout"></MenuItem>
           </q-menu>
         </q-btn>
       </q-toolbar>
@@ -72,9 +73,10 @@
 
 <script>
   import MainMenu from 'components/ui/MainMenu'
+  import MenuItem from 'components/ui/MenuItem'
 
   export default {
-    components: { MainMenu },
+    components: { MainMenu, MenuItem },
     data () {
       return {
         left: false,
