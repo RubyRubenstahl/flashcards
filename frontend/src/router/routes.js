@@ -75,6 +75,37 @@ const routes = [
   },
 
   {
+    path: "/app/projects",
+    name: "Projects",
+    component: () => import("layouts/MainLayout.vue"),
+    children: [
+      {
+        path: "",
+        name: "Projects",
+        components: {
+          default: () => import("pages/projects/ProjectListPage.vue"),
+          actions: () => import("components/projects/ProjectsActionList.vue")
+        },
+        meta: { mode: "new", icon: "fas fa-projects" }
+      },
+
+      {
+        path: "new",
+        name: "Add Project",
+        component: () => import("pages/projects/NewProjectPage.vue"),
+        meta: { mode: "new", icon: "fas fa-plus-circle" }
+      },
+      {
+        path: ":id",
+        name: "Edit Project",
+        component: () => import("pages/projects/EditProjectPage.vue"),
+        name: "Project Settings",
+        meta: { mode: "edit", icon: "fas fa-cog" }
+      }
+    ]
+  },
+
+  {
     path: "/app/setup",
     component: () => import("layouts/MenuLayout")
   }
