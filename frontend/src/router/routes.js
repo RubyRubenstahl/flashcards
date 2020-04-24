@@ -106,6 +106,37 @@ const routes = [
   },
 
   {
+    path: "/app/companies",
+    name: "Companies",
+    component: () => import("layouts/MainLayout.vue"),
+    children: [
+      {
+        path: "",
+        name: "Companies",
+        components: {
+          default: () => import("pages/companies/CompanyListPage.vue"),
+          actions: () => import("components/companies/CompaniesActionList.vue")
+        },
+        meta: { mode: "new", icon: "fas fa-companies" }
+      },
+
+      {
+        path: "new",
+        name: "Add Company",
+        component: () => import("pages/companies/NewCompanyPage.vue"),
+        meta: { mode: "new", icon: "fas fa-plus-circle" }
+      },
+      {
+        path: ":id",
+        name: "Edit Company",
+        component: () => import("pages/companies/EditCompanyPage.vue"),
+        name: "Company Settings",
+        meta: { mode: "edit", icon: "fas fa-cog" }
+      }
+    ]
+  },
+
+  {
     path: "/app/setup",
     component: () => import("layouts/MenuLayout")
   }
