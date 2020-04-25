@@ -35,6 +35,7 @@
 <script>
   import { mapState } from 'vuex'
   import AuthPageWrapper from './AuthPageWrapper'
+  import feathersClient from '../../feathers-client'
   export default {
     name: 'Login',
     components: { AuthPageWrapper },
@@ -49,9 +50,22 @@
 
     },
     beforeRouteEnter (to, from, next) {
+      
+
       next(vm => {
         vm.prevRoute = from
+
       })
+    },
+    mounted(){
+      // Redirect to first run sequence if the app hasn't been initialized
+      feathersClient.service('app-info').get('public').then(info=>{
+        console.log(info)
+        if(info.isFirstRun){
+          console.log('First run. Routing to setup')
+          this.$router.push('/first-run')
+        }
+      }).catch(err=>console.error(err))
     },
     methods: {
       redirectUrl () {
