@@ -14,10 +14,12 @@
         spellcheck="false"
         v-if="value"
       >
-        <q-input v-model="user.username" label="Username" autofocus></q-input>
+        <q-input v-model="user.email" label="email"></q-input>
         <q-input v-model="user.firstName" label="First Name"></q-input>
         <q-input v-model="user.lastName" label="Last Name"></q-input>
-        <q-input v-model="user.email" label="email"></q-input>
+        <q-input v-model="user.phoneNumber" label="Phone Number"></q-input>
+        <q-input v-model="user.department" label="Department"></q-input>
+        <q-input v-model="user.title" label="Title"></q-input>
         <q-input
           v-if="mode==='new'"
           label="password"
@@ -41,6 +43,7 @@
     </template>
   </FeathersVuexFormWrapper>
   </section>
+  <q-skeleton v-else width="100%" height="300px" ></q-skeleton>
 </template>
 
 <script>
