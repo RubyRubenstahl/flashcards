@@ -74,7 +74,7 @@ module.exports = function (ctx) {
         //   }
         // })
       },
-      transpileDependencies: ["feathers-vuex", "vuex-persist"]
+      transpileDependencies: ["feathers-vuex"]
     },
 
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer

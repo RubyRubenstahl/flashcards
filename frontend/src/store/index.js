@@ -3,14 +3,11 @@ import Vuex from 'vuex'
 import auth from "./store.auth";
 // import example from './module-example'
 import { FeathersVuex } from "../feathers-client";
-import VuexPersistence from "vuex-persist";
 
 Vue.use(Vuex)
 Vue.use(FeathersVuex);
 
-const vuexLocal = new VuexPersistence({
-  storage: window.localStorage
-});
+
 
 /*
  * If not building with SSR mode, you can
