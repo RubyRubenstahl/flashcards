@@ -14,7 +14,7 @@
         spellcheck="false"
         v-if="value"
       >
-        <q-input v-model="user.email" label="email"></q-input>
+        
         <q-input v-model="user.firstName" label="First Name"></q-input>
         <q-input v-model="user.lastName" label="Last Name"></q-input>
         <q-input v-model="user.phoneNumber" label="Phone Number"></q-input>
