@@ -13,7 +13,7 @@ export default async (opts) => {
     store
       .dispatch("auth/authenticate", {
         strategy: "jwt",
-        username: auth.username,
+        email: auth.email,
         accessToken: auth.accessToken
       })
       .then(res => {

@@ -5,7 +5,7 @@
       :key="user._id"
       :value="value"
       :val="user._id"
-      :label="user.username"
+      :label="user.email"
       @input="$val=>$emit('input', $val)"
     />
   </fragment>

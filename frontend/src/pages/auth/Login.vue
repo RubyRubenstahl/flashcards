@@ -4,8 +4,8 @@
       <div class="q-gutter-md q-pl-md">
         <q-input
           autofocus
-          label="Username"
-          v-model="username"
+          label="Email"
+          v-model="email"
           class="full-width"
           filled
         ></q-input>
@@ -40,9 +40,9 @@
     name: 'Login',
     components: { AuthPageWrapper },
     data () {      return {
-        username: null,
+        email: null,
         password: null,
-        prevRoute:null
+        prevRoute: null
       }
     },
     computed: {
@@ -50,33 +50,22 @@
 
     },
     beforeRouteEnter (to, from, next) {
-      
-
       next(vm => {
         vm.prevRoute = from
 
       })
     },
-    mounted(){
-      // Redirect to first run sequence if the app hasn't been initialized
-      feathersClient.service('app-info').get('public').then(info=>{
-        console.log(info)
-        if(info.isFirstRun){
-          console.log('First run. Routing to setup')
-          this.$router.push('/first-run')
-        }
-      }).catch(err=>console.error(err))
-    },
+
     methods: {
       redirectUrl () {
         const pendingRoute = this.$router.history.pending || this.prevRoute;
         const path = pendingRoute && pendingRoute.path;
-        if(typeof path ==='string' && path.startsWith('/app')){
-            return path;
-        }else{
+        if (typeof path === 'string' && path.startsWith('/app')) {
+          return path;
+        } else {
           return '/app'
         }
-        
+
       },
       login () {
         console.log('Logging in')
@@ -84,7 +73,7 @@
         const router = this.$router;
         this.$store.dispatch('auth/authenticate', {
           strategy: 'local',
-          username: this.username,
+          email: this.email,
           password: this.password
         }).then(res => {
           router.push(redirectUrl);
