@@ -147,3 +147,5 @@ data/
 uploads/
 omxpipe
 report.*.json
+dist/
+build/
