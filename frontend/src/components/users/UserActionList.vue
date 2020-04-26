@@ -1,12 +1,7 @@
 <template>
   <q-list style="min-width: 100px">
-    <!-- <MenuItem
-      :title="`Edit ${user.username}`"
-      icon="fas fa-edit"
-      :to="`/app/settings/users/${user._id}`"
-    /> -->
     <MenuItem
-      :title="`Delete ${user.username}`"
+      :title="`Delete ${user.firstName} ${user.lastName}`"
       icon="fas fa-trash"
       @click="confirmDelete"
     />
@@ -29,10 +24,11 @@
     },
     methods: {
       confirmDelete () {
+        const fullName = `${this.user.firstName} ${this.user.lastName}`
         this.$q.dialog({
           title: 'Delete User',
           icon: 'fas fa-trash',
-          message: `Are use sure you want to delete ${this.user.username}?`,
+          message: `Are use sure you want to delete ${fullName}?`,
           cancel: true
         })
           .onOk(() => {
@@ -40,7 +36,7 @@
               .then(() => {
                 this.$q.notify({
                   type: 'positive',
-                  message: `${this.user.username} Deleted`
+                  message: `${fullName} Deleted`
                 })
               });
           })
