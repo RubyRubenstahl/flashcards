@@ -62,7 +62,7 @@
         this.$emit('saved', res);
           this.$q.notify({
                   type: 'positive',
-                  message: `User "${res.username}" ${this.mode==='new' ? 'created' : 'saved'}.`
+                  message: `User "${res.firstName} ${res.lastName}" ${this.mode==='new' ? 'created' : 'saved'}.`
         })
       },
       handleSaveError(err){
