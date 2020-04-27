@@ -6,7 +6,7 @@
 </template>
 
 <script>
-  import CompanyList from 'components/companies/Companylist'
+  import CompanyList from 'components/companies/CompanyList'
   import { mapActions, mapGetters } from 'vuex';
   export default {
     name: 'CompanyListPage',

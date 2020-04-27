@@ -6,7 +6,7 @@
 </template>
 
 <script>
-  import ProjectList from 'components/projects/Projectlist'
+  import ProjectList from 'components/projects/ProjectList'
   import { mapActions, mapGetters } from 'vuex';
   export default {
     name: 'ProjectListPage',

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-  import UserList from 'components/users/Userlist'
+  import UserList from 'components/users/UserList'
   import { mapActions, mapGetters } from 'vuex';
   export default {
     name: 'UserListPage',
