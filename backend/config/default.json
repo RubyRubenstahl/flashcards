@@ -22,7 +22,7 @@
         "typ": "access"
       },
       "audience": "https://partner.kroh.tech",
-      "issuer": "feathers",
+      "issuer": "krohtech",
       "algorithm": "HS256",
       "expiresIn": "1d"
     },
@@ -44,5 +44,5 @@
     }
   },
 
-  "mongodb": "mongodb://localhost:27017/kt_partners"
+  "mongodb": "mongodb://localhost:27017/partner.kroh.tech"
 }
