@@ -106,7 +106,7 @@ module.exports = function (ctx) {
       workboxPluginMode: "GenerateSW", // 'GenerateSW' or 'InjectManifest'
       workboxOptions: {}, // only for GenerateSW
       manifest: {
-        name: "Krotech Partner Manager",
+        name: "Test",
         short_name: "KT Partner Mgr",
         description: "An application for managing partner & client relatioinships",
         display: "standalone",
