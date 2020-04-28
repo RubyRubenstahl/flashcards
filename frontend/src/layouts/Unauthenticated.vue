@@ -25,7 +25,7 @@
   background-image: linear-gradient(
       to bottom,
       rgba(3, 22, 85, 0.8),
-      rgba(14, 11, 100, 0.75)
+      rgba(50, 11, 100, 0.9)
       
     );
     
