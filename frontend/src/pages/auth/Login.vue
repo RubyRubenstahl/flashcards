@@ -1,5 +1,5 @@
 <template>
-  <AuthPageWrapper title="Test">
+  <AuthPageWrapper title="KrohTech Partner Manager">
     <q-form @submit="login">
       <div class="q-gutter-md q-pl-md">
         <q-input
