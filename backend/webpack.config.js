@@ -11,9 +11,9 @@ module.exports = {
   target: "node",
   plugins: [
     new CopyPlugin([
-      { from: "config", to: "config" },
-      { from: "package.json", to: "package.json" },
-      { from: "ecosystem.config.js", to: "ecosystem.config.js" }
+      { from: "config/**", to: "config/" },
+      { from: "package.json" },
+      { from: "ecosystem.config.js"}
     ])
   ],
   externals: [nodeExternals()]
