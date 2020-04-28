@@ -2,6 +2,10 @@ const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
 var nodeExternals = require("webpack-node-externals");
 
+console.log(`Yes, I'm actually running the new webpack config`)
+console.log(`CopyPlugin exists: ${!!CopyPlugin}`);
+console.log(`nodeExternals exists: ${!!nodeExternals}`);
+
 module.exports = {
   entry: "./src/index.js",
   output: {
