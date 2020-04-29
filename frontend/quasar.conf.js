@@ -6,8 +6,13 @@ module.exports = function (ctx) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://quasar.dev/quasar-cli/cli-documentation/boot-files
-    boot: ['reauthenticate', 'filters/humanize-date', 'filters/humanize-duration', 'handle-first-run'],
-    
+    boot: [
+      "reauthenticate",
+      "filters/humanize-date",
+      "filters/humanize-duration",
+      "handle-first-run"
+    ],
+
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
     css: ["app.scss"],
 
@@ -43,7 +48,7 @@ module.exports = function (ctx) {
       directives: [],
 
       // Quasar plugins
-      plugins: ["Dialog", 'Notify']
+      plugins: ["Dialog", "Notify"]
     },
 
     // https://quasar.dev/quasar-cli/cli-documentation/supporting-ie
@@ -53,7 +58,7 @@ module.exports = function (ctx) {
     build: {
       vueRouterMode: "hash", // available values: 'hash', 'history'
       env: {
-        buildType: JSON.stringify( 'development')
+        buildType: JSON.stringify("development")
       },
       // rtl: false, // https://quasar.dev/options/rtl-support
       // showProgress: false,
@@ -83,7 +88,34 @@ module.exports = function (ctx) {
     devServer: {
       https: false,
       port: 8080,
-      open: true // opens browser window automatically
+      open: true,
+      proxy: {
+        // proxy all requests starting with /api to jsonplaceholder
+        // "/api": "http://localhost:3030",
+        // "^/socket.io": {
+        //   target: "http://localhost:3030/",
+        //   ws: true
+        // },
+        // "^/oauth": {
+        //   target: "http://localhost:3030",
+        //   changeOrigin: true
+        // },
+
+        "^/api": {
+          target: "http://localhost:3030",
+          changeOrigin: true,
+          ws: true,
+          pathRewrite: {
+            "^/api": ""
+          }
+        },
+
+        "/socket.io": {
+          target: "http://localhost:3030/socket.io",
+          changeOrigin: true,
+          ws: true
+        }
+      }
     },
 
     // animations: 'all', // --- includes all animations
@@ -110,7 +142,8 @@ module.exports = function (ctx) {
       manifest: {
         name: "Krotech Partner Manager",
         short_name: "KT Partner Mgr",
-        description: "An application for managing partner & client relatioinships",
+        description:
+          "An application for managing partner & client relatioinships",
         display: "standalone",
         orientation: "portrait",
         background_color: "#ffffff",
