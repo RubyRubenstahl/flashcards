@@ -9,11 +9,9 @@ import feathersVuex from "feathers-vuex";
 
 let socket;
 
-if (process.env.DEV) {
-  socket = io("http://localhost:3030", { transports: ["websocket"] });
-} else {
-  socket = io("/", { transports: ["websocket"] });
-}
+
+socket = io(window.location.origin , { transports: ["websocket"] });
+
 
 const feathersClient = feathers()
   .configure(socketio(socket))
