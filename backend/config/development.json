@@ -1,3 +1,4 @@
 {
+  "host": "https://dev.partner.kroh.tech",
   "mongodb": "mongodb://localhost:27017/partner-development-kroh-tech"
 }

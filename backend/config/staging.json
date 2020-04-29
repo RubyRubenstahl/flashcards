@@ -1,5 +1,5 @@
 {
-  "host": "localhost",
+  "host": "https://staging.partner.kroh.tech",
   "port": "3031",
   "mongodb": "mongodb://localhost:27017/partner-staging-kroh-tech"
 }
