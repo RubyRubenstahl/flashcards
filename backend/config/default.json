@@ -1,5 +1,5 @@
 {
-  "host": "localhost",
+  "host": "https://developer.partner.kroh.tech",
   "port": 3030,
   "public": "../public/",
   "paginate": {
@@ -21,7 +21,7 @@
       "header": {
         "typ": "access"
       },
-      "audience": "https://partner.kroh.tech",
+      "audience": "https://developer.partner.kroh.tech",
       "issuer": "krohtech",
       "algorithm": "HS256",
       "expiresIn": "1d"
