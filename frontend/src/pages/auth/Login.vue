@@ -29,6 +29,7 @@
         >Login</q-btn>
       </div>
     </q-form>
+    <a href="/oauth/microsoft" class="full-width flex flex-center q-ma-lg"><img src="statics/login-with-microsoft-button.png"/></a>
   </AuthPageWrapper>
 </template>
 
