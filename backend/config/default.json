@@ -34,7 +34,7 @@
       "redirect": "/#/app",
       "microsoft": {
         "key": "14eb7fdb-c310-4867-86e8-f4556198ae35",
-        "authorize_url": "https://login.microsoftonline.com/6043c481-ca7c-4fde-9673-d1bd537ea35d/authorize",
+        "authorize_url": "https://login.microsoftonline.com/6043c481-ca7c-4fde-9673-d1bd537ea35d/oauth2/v2.0/authorize",
         "secret": "e@P3mGoJkwU?hHy35F5Yf__Gi.==1Ai/",
         "scope": [
           "User.Read"
