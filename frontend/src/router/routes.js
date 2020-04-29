@@ -10,9 +10,9 @@ const routes = [
     children: [{ path: "", component: () => import("pages/auth/Login.vue") }]
   },
   {
-    path: "/login",
+    path: "/logout",
     component: () => import("layouts/Unauthenticated.vue"),
-    children: [{ path: "", component: () => import("pages/auth/Login.vue") }]
+    children: [{ path: "", component: () => import("pages/auth/Logout.vue") }]
   },
 
   {
