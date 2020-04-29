@@ -32,13 +32,11 @@
     },
     "oauth": {
       "redirect": "/",
-      "google": {
-        "key": "<google oauth key>",
-        "secret": "<google oauth secret>",
+      "microsoft": {
+        "key": "14eb7fdb-c310-4867-86e8-f4556198ae35",
+        "secret": "e@P3mGoJkwU?hHy35F5Yf__Gi.==1Ai/",
         "scope": [
-          "email",
-          "profile",
-          "openid"
+          "User.Read"
         ]
       }
     }
