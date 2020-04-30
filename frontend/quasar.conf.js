@@ -110,6 +110,14 @@ module.exports = function (ctx) {
           }
         },
 
+        "/oauth": {
+          target: "http://localhost:3030",
+          changeOrigin: true,
+          ws: true,
+          pathRewrite: {
+            "^/api": ""
+          }
+        },
         "/socket.io": {
           target: "http://localhost:3030/socket.io",
           changeOrigin: true,
