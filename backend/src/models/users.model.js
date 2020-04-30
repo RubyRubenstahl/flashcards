@@ -3,20 +3,23 @@
 // See http://mongoosejs.com/docs/models.html
 // for more of what you can do here.
 module.exports = function(app) {
-  const modelName = 'users';
-  const mongooseClient = app.get('mongooseClient');
+  const modelName = "users";
+  const mongooseClient = app.get("mongooseClient");
   const { Schema } = mongooseClient;
   const schema = new Schema(
     {
       firstName: { type: String, required: true },
       lastName: { type: String, required: true },
-      phoneNumber: { type: String, required: true },
+      displayName: { type: String, required: true },
+      mobilePhone: { type: String },
+      businessPhone: { type: String },
+      avatar: { type: String },
       email: { type: String, required: true },
       companyId: { type: String },
       password: { type: String },
       type: {
         type: String,
-        enum: ['internal', 'contact', 'partner', 'client']
+        enum: ["internal", "contact", "partner", "client"]
       },
       isAdmin: { type: Boolean, default: false },
       canLogin: { type: Boolean, default: false },

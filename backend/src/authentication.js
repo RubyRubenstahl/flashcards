@@ -1,3 +1,8 @@
+const msGraph = require('./lib/ms-graph');
+const DataURI = require("datauri");
+const datauri = new DataURI();
+const mime = require('mime-types');
+
 const {
   AuthenticationService,
   JWTStrategy
@@ -7,27 +12,52 @@ const { expressOauth } = require("@feathersjs/authentication-oauth");
 
 const { OAuthStrategy } = require("@feathersjs/authentication-oauth");
 
+
+const fetchUserOfficeProfile = async (authData)=>{
+    // Fetch user profile data from MS Graph
+    const res = await msGraph(authData).get('/me');
+    const profile = res.data;
+  
+    const avatar = await fetchUserAvatar(authData);
+
+
+    const user = {
+      firstName: profile.givenName,
+      lastName: profile.surname,
+      displayName: profile.displayName,
+      title: profile.jobTitle,
+      mobilePhone: profile.mobilePhone,
+      businessPhone: profile.businessPhone,
+      email: profile.mail,
+      avatar
+  }
+  return user;
+
+}
+
+const fetchUserAvatar = async (authData) => {
+  const res = await msGraph(authData).get("/me/photo/$value");
+  const fileExtension = '.' + mime.extension(res.headers['content-type']);
+  const imageDataUri = datauri.format(fileExtension, res.data);
+  return imageDataUri;
+}
+
 class MicrosoftOauthStrategy extends OAuthStrategy {
-  async getProfile(data, params) {
+  async getProfile (data, params) {
+    const userProfile = await fetchUserOfficeProfile(data);
+    
     if (data.error) {
       console.error(data);
       console.error(params);
       return;
     }
+
+
     // console.log(data);
-    return data;
+    return { ...data, userProfile };
   }
 
-  async getEntityData(profile) {
-    console.log(profile);
-    // Include the `email` from the GitHub profile when creating
-    // or updating a user that logged in with GitHub
-    const baseData = await super.getEntityData(profile);
-    return {
-      ...baseData,
-      email: profile.email
-    };
-  }
+
 
   async createEntity(profile) {
     return;
