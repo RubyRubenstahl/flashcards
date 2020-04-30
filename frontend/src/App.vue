@@ -20,7 +20,7 @@
   export default {
     name: 'App',
     created () {
-      this.$q.dark.set(true)
+      // this.$q.dark.set(true)
     },
     computed:{
       isProduction(){

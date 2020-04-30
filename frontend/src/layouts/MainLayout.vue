@@ -22,6 +22,8 @@
           KrohTech Partner Management
         </q-toolbar-title>
 
+
+        <img v-if="user.avatar" :src="user.avatar"/>
         <q-btn
           dense
           flat
@@ -72,9 +74,9 @@
 </template>
 
 <script>
+import { mapState, mapGetters, mapActions } from 'vuex'
   import MainMenu from 'components/ui/MainMenu'
   import MenuItem from 'components/ui/MenuItem'
-
   export default {
     components: { MainMenu, MenuItem },
     data () {
@@ -82,6 +84,12 @@
         left: false,
       }
     },
+    computed:{
+      user(){
+      
+        return this.$store.state.auth.user
+      }
+    }
 
   }
 </script>

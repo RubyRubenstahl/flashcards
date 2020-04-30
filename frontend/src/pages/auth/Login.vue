@@ -29,7 +29,7 @@
         >Login</q-btn>
       </div>
     </q-form>
-    <a href="/oauth/microsoft" class="full-width flex flex-center q-ma-lg"><img src="statics/login-with-microsoft-button.png"/></a>
+    <OauthLoginButtons/>
   </AuthPageWrapper>
 </template>
 
@@ -37,9 +37,10 @@
   import { mapState } from 'vuex'
   import AuthPageWrapper from './AuthPageWrapper'
   import feathersClient from '../../feathers-client'
+  import OauthLoginButtons from 'components/auth/OauthLoginButtons'
   export default {
     name: 'Login',
-    components: { AuthPageWrapper },
+    components: { AuthPageWrapper, OauthLoginButtons },
     data () {      return {
         email: null,
         password: null,
