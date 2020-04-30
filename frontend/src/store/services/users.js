@@ -22,7 +22,7 @@ class User extends BaseModel {
       phoneNumber: "",
       companyId: "",
       type: "contact",
-      canLogin: "",
+      loginEnabled: "",
       rights: ""
     };
   }
