@@ -1,29 +1,48 @@
-const { authenticate } = require('@feathersjs/authentication').hooks;
+const { authenticate } = require("@feathersjs/authentication").hooks;
 
 // TODO: Allow admin user to be added on first run
 // TODO: Disallow duplicates
-
-
+const { alterItems } = require("feathers-hooks-common");
 const {
-  hashPassword, protect
-} = require('@feathersjs/authentication-local').hooks;
+  hashPassword,
+  protect
+} = require("@feathersjs/authentication-local").hooks;
+
+const mergeDefaults = alterItems(user => {
+  return {
+    isAdmin: false,
+    loginEnabled: false,
+    roles: [],
+    rights: [],
+    ...user
+  };
+});
+
+
+const stripEmptyPasswords = alterItems(user => {
+  const password = String(user.password).trim();
+  if (password === '') {
+    delete user.password;
+  }
+  return user;
+})
 
 module.exports = {
   before: {
     all: [],
-    find: [ authenticate('jwt') ],
-    get: [ authenticate('jwt') ],
-    create: [ hashPassword('password') ],
-    update: [ hashPassword('password'),  authenticate('jwt') ],
-    patch: [ hashPassword('password'),  authenticate('jwt') ],
-    remove: [ authenticate('jwt') ]
+    find: [authenticate("jwt")],
+    get: [authenticate("jwt")],
+    create: [hashPassword("password"), mergeDefaults],
+    update: [hashPassword("password"), authenticate("jwt")],
+    patch: [stripEmptyPasswords, hashPassword("password"), authenticate("jwt")],
+    remove: [authenticate("jwt")]
   },
 
   after: {
-    all: [ 
+    all: [
       // Make sure the password field is never sent to the client
       // Always must be the last hook
-      protect('password')
+      protect("password")
     ],
     find: [],
     get: [],
