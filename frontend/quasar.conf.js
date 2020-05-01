@@ -1,7 +1,7 @@
 // Configuration for your app
 // https://quasar.dev/quasar-cli/quasar-conf-js
 
-module.exports = function (ctx) {
+module.exports = function(ctx) {
   return {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
@@ -48,7 +48,21 @@ module.exports = function (ctx) {
       directives: [],
 
       // Quasar plugins
-      plugins: ["Dialog", "Notify"]
+      plugins: ["Dialog", "Notify"],
+      config: {
+        brand: {
+          primary: "#001366",
+          secondary: "#8b2da1",
+          accent: "#27b0a5",
+
+          dark: "#004f7d",
+
+          positive: "#2bcf85",
+          negative: "#b81c2e",
+          info: "#3289ed",
+          warning: "#f58720"
+        }
+      }
     },
 
     // https://quasar.dev/quasar-cli/cli-documentation/supporting-ie
@@ -227,4 +241,4 @@ module.exports = function (ctx) {
       }
     }
   };
-}
+};
