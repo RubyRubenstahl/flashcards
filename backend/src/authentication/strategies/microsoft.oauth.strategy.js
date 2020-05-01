@@ -28,8 +28,8 @@ class MicrosoftOauthStrategy extends OAuthStrategy {
       mobilePhone: profile.mobilePhone,
       businessPhone: profile.businessPhone,
       email: profile.mail,
+      microsoftId: profile.id,
       avatar,
-      id: profile.id
     };
     return user;
   }
@@ -41,7 +41,7 @@ class MicrosoftOauthStrategy extends OAuthStrategy {
     return imageDataUri.content;
   }
 
-  async getProfile(data, params) {
+  async getProfile (data, params) {
     try {
       const userInfo = await this.fetchOfficeProfile(data);
       return { ...data, userInfo };
@@ -50,11 +50,11 @@ class MicrosoftOauthStrategy extends OAuthStrategy {
     }
   }
 
-  getEntityQuery(profile, params) {
+  getEntityQuery (profile, params) {
     return { email: profile.userInfo.email }
   }
 
-  async getEntityData(profile) {
+  async getEntityData (profile) {
     // Include the `email` from the GitHub profile when creating
     // or updating a user that logged in with GitHub
     const baseData = await super.getEntityData(profile);
