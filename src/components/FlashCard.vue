@@ -1,53 +1,77 @@
 <template>
 
-  <div class="container">
-    <transition name="fade">
-      <div
-        v-if="isCorrect"
-        class="flashcard"
-      >
-        Yep</div>
-      <div
-        v-if="!isCorrect"
-        class="flashcard"
-      >
-        Nope</div>
-    </transition>
+  <div
+    class="container"
+    ref="container"
+  >
+    {{completed}}
+    <div
+      class="flashcard flashcard-back"
+      :style="{backgroundImage: `radial-gradient(#00000022, #00000055), url(https://loremflickr.com/300/600/cute,animal,silly?random=${cacheBuster})`}"
+    >
 
-    <transition name="fade">
+      Correct!
+      <button @click="createNewCard">Next</button>
 
-      <div
-        v-if="card.side==='question'"
-        class="flashcard flashcard-front"
+    </div>
+    <div
+      v-if="!isCorrect"
+      class="flashcard flashcard-back incorrect-text"
+      :style="{backgroundImage: `radial-gradient(#00000044, #00000088), url(https://loremflickr.com/300/600/graveyard,creepy?random=${cacheBuster})`}"
+    >
+      Failure
+      <button @click="tryAgain" style="position:relative;top:50px">Try Again</button>
+
+    </div>
+
+    <div
+      v-if="side==='question'"
+      class="flashcard flashcard-front"
+    >
+      <form
+        @submit.prevent="checkAnswer"
+        ref="form"
       >
-        <form @submit.prevent="checkAnswer" ref="form">
-          <div
-            v-for="(row, index) in card.rows"
-            :key="index"
-          >
-            <FlashCardRow v-model="card.rows[index]" @submit="card.side='answer'"/>
-          </div>
-        </form>
-      </div>
-    </transition>
+        <div
+          v-for="(row, index) in card.rows"
+          :key="index"
+        >
+          <FlashCardRow
+            v-model="card.rows[index]"
+            @submit="checkAnswer"
+          />
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 <script>
   import FlashCardRow from './FlashCardRow'
+
+
+
+  const createTenFactCard = () => {
+    const firstAddend = Math.round(Math.random() * 10)
+    return {
+      rows: [
+        { component: 'number', value: firstAddend },
+        { component: 'input', type: Number, prefix: '+', expected: 10 - firstAddend },
+        { component: 'divider' },
+        { component: 'number', value: 10 },
+      ]
+    }
+  }
+
+
   export default {
     name: 'FlashCard',
     components: { FlashCardRow },
     data () {
       return {
-        card: {
-          rows: [
-            { component: 'number', value: 4 },
-            { component: 'input', type: Number, prefix: '+', placeholder: '?', expected: 4 },
-            { component: 'divider' },
-            { component: 'number', value: 4 }
-          ],
-          side: 'question'
-        }
+        card: createTenFactCard(),
+        side: 'question',
+        completed: 0,
+        cacheBuster: null
       }
     },
     computed: {
@@ -55,7 +79,7 @@
         const isCorrect = this.card.rows.
           filter(row => row.component === 'input')
           .reduce((isCorrect, input) => {
-            if(input.expected===undefined) return true;
+            if (input.expected === undefined) return true;
             return isCorrect && input.type(input.value) === input.expected;
           }, true);
 
@@ -70,12 +94,31 @@
         this.inputs.aswerLine = e;
       },
       checkAnswer () {
-        console.log('You answered')
-        this.side = 'correct'
+        this.side = 'answer';
+
+        if (this.isCorrect) {
+          this.completed++;
+        }
+      },
+      tryAgain () {
+        this.side = 'question';
+        this.card.rows = this.card.rows.map(row => row.component === 'input' ? { ...row, value: undefined } : row)
+      },
+      createNewCard () {
+        this.card = createTenFactCard();
+        this.side = 'question';
       }
     },
     props: {
 
+    },
+    watch: {
+
+      side () {
+        console.log(this.cacheBuster)
+        this.cacheBuster = Math.round(Math.random()*1000)
+
+      }
     }
   }
 </script>
@@ -94,7 +137,34 @@
   border-radius: 12px;
   padding: 0.5in;
 
-  font-size: 1.5in;
+  font-size: 1.3in;
+}
+
+.incorrect-text {
+  color: #ffafaf;
+
+  text-shadow: 0 0 26px #f00;
+}
+
+.flashcard-back {
+  background-size: cover;
+  background-position: center;
+  color: white;
+  font-size: 0.8in;
+  text-align: center;
+}
+
+button {
+  font-size: 0.3in;
+  border-radius: 10px;
+  border: none;
+  padding: 12px;
+  background-color: #629bb9bd;
+  color: #ffffffbd;
+  width: 200px;
+}
+
+.flashcard-front {
   text-align: right;
 }
 
