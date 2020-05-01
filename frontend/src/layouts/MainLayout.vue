@@ -4,7 +4,6 @@
     <q-header
       elevated
       class="bg-primary text-white"
-      height-hint="98"
     >
       <q-toolbar>
         <q-btn
@@ -22,18 +21,19 @@
           KrohTech Partner Management
         </q-toolbar-title>
 
-
         <q-btn
           dense
           flat
           round
         >
+        <q-avatar>
            <img v-if="user && user.avatar" :src="user.avatar"/>
 
           <q-menu>
             <MenuItem title="User Profile" icon="fas fa-edit" to="/app/profile"></MenuItem>
             <MenuItem title="Sign Out" icon="logout" to="/logout"></MenuItem>
           </q-menu>
+        </q-avatar>
         </q-btn>
           <MainFAB/>
       </q-toolbar>
