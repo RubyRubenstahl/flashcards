@@ -6,23 +6,25 @@
   >
     {{completed}}
     <div
-      class="flashcard flashcard-back"
-      :style="{backgroundImage: `radial-gradient(#00000022, #00000055), url(https://loremflickr.com/300/600/cute,puppy,wolf?random=${cacheBuster})`}"
+      class="flashcard flashcard-back correct-text"
+      :style="{backgroundImage: `radial-gradient(#00880022, #00440044), url(https://loremflickr.com/300/600/cute,puppy,wolf?random=${cacheBuster})`}"
     >
 
       Correct!
-      <button @click="createNewCard">Next</button>
+      <button @click="createNewCard" ref="nextButton">Next</button>
 
     </div>
     <div
       v-if="!isCorrect"
       class="flashcard flashcard-back incorrect-text"
-      :style="{backgroundImage: `radial-gradient(#00000044, #00000088), url(https://loremflickr.com/300/600/graveyard,creepy?random=${cacheBuster})`}"
+      :style="{backgroundImage: `radial-gradient(#88000044, #44000088), url(https://loremflickr.com/300/600/graveyard,creepy?random=${cacheBuster})`}"
+      
     >
       Failure
       <button
         @click="tryAgain"
         style="position:relative;top:50px"
+        ref="tryAgainButton"
       >Try Again</button>
 
     </div>
@@ -58,7 +60,7 @@
     return {
       rows: [
         { component: 'number', value: firstAddend },
-        { component: 'input', type: Number, prefix: '+', expected: 10 - firstAddend },
+        { component: 'input', type: Number, prefix: '+', expected: 10 - firstAddend , autofocus:true},
         { component: 'divider' },
         { component: 'number', value: 10 },
       ]
@@ -131,6 +133,14 @@
             failImg.src = `https://loremflickr.com/300/600/graveyard,creepy?random=${this.cacheBuster}`
             failImg.onload = e=>console.log(e)
           } 
+
+          if(newVal==='answer' && !this.isCorrect){
+            this.$refs.tryAgainButton.focus();
+          }
+
+          if(newVal==='answer' && this.isCorrect){
+            this.$refs.nextButton.focus();
+          }
         }
       }
 
@@ -153,6 +163,12 @@
   padding: 0.5in;
 
   font-size: 1.3in;
+}
+
+.correct-text {
+  color: #afffaf;
+
+  text-shadow: 0 0 26px #0f0;
 }
 
 .incorrect-text {

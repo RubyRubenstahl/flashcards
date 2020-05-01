@@ -16,7 +16,7 @@
         class="input-row"
         :style="{width: String(value.expected).length+1 + 'ch'}"
         @keypress.enter="$emit('submit')"
-        
+        ref="input"
       />
     </div>
   </div>
@@ -28,6 +28,19 @@
       value: {
         type: Object,
         required: true
+      }
+    },
+    watch:{
+      value:{
+        deep:true,
+        immediate:true,
+        handler(val){
+          this.$nextTick(()=>{
+          if(val.autofocus){
+            this.$refs.input.focus();
+          }
+          })
+        }
       }
     }
   }
