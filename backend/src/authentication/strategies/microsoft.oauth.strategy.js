@@ -1,4 +1,4 @@
-const msGraph = require("../../lib/ms-graph");
+const msGraph = require("../../lib/ms-graph.js");
 const DataURI = require("datauri");
 const datauri = new DataURI();
 
