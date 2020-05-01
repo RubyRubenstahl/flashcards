@@ -31,7 +31,6 @@
           icon="fas fa-ellipsis-v"
         >
           <q-menu>
-            <router-view name="actions"></router-view>
             <MenuItem title="Sign Out" icon="logout" to="/logout"></MenuItem>
           </q-menu>
         </q-btn>
