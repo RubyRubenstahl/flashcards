@@ -6,7 +6,6 @@
   >
     {{completed}}
     <div
-      
       class="flashcard flashcard-back"
       :style="{backgroundImage: `radial-gradient(#00000022, #00000055), url(https://loremflickr.com/300/600/cute,puppy,wolf?random=${cacheBuster})`}"
     >
@@ -121,14 +120,19 @@
       side: {
         immediate: true,
         handler (newVal) {
-          if (newVal === 'answer') {
-            console.log(this.cacheBuster)
+          if (newVal === 'question') {
             this.cacheBuster = Math.round(Math.random() * 1000)
-          }else{
-            this.cacheBuster=1
-          }
-        }      
+           
+            let successImg = new Image();
+            successImg.src = `https://loremflickr.com/300/600/cute,puppy,wolf?random=${this.cacheBuster}`
+            successImg.onload = e=>console.log(e)
+
+            let failImg = new Image();
+            failImg.src = `https://loremflickr.com/300/600/graveyard,creepy?random=${this.cacheBuster}`
+            failImg.onload = e=>console.log(e)
+          } 
         }
+      }
 
     }
   }
@@ -158,7 +162,7 @@
 }
 
 .flashcard-back {
-  background-size: contain,cover;
+  background-size: cover;
   /* background-position: center; */
   color: white;
   font-size: 0.8in;
