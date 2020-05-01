@@ -1,14 +1,22 @@
 <template>
     <div class="flashcard">
         <div v-for="(line, index) in inputLines" :key="index">
-            <div v-if="line.type==='value'">{{line.value}}</div>
+            <FlashCardLine :line="line" @change=""/>
         </div>
-
+        <hr class="divider-line">
+            <FlashCardLine :line="answerLine"/>
     </div>
 </template>
 <script>
+import FlashCardLine from './FlashCardLine'
 export default {
     name: 'FlashCard',
+    components:{FlashCardLine},
+    data(){
+        return {
+            inputs:{}
+        }
+    },
     props: {
         inputLines:{
             type: Array,
@@ -34,6 +42,14 @@ export default {
        text-align: right;
     }
 
+
+    .divider-line{
+        font-size:2;
+        border: 4px solid #000000AA;
+        margin:0;
+        padding:0;
+        margin-top:10px;
+    }
 
 </style>
  

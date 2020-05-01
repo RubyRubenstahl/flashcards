@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-    <FlashCard :inputLines="[{type: 'value', value: 4 }, {type: 'value', value: '+8' }]"/>
+    <FlashCard 
+      :inputLines="[{type: 'value', value: 4 }, {type: 'input', name: 'addend', expected:8 }]" :answerLine="{type: 'value', value: 12 }"
+      />
   </div>
 </template>
 
