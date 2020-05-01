@@ -1,4 +1,4 @@
-const MicrosoftOauthStrategy = require('./strategies/microsoft.oauth.strategy');
+const MicrosoftOauthStrategy = require('./strategies/microsoft.oauth.strategy.js');
 const {
   AuthenticationService,
   JWTStrategy
