@@ -6,8 +6,9 @@
   >
     {{completed}}
     <div
+      
       class="flashcard flashcard-back"
-      :style="{backgroundImage: `radial-gradient(#00000022, #00000055), url(https://loremflickr.com/300/600/cute,animal,silly?random=${cacheBuster})`}"
+      :style="{backgroundImage: `radial-gradient(#00000022, #00000055), url(https://loremflickr.com/300/600/cute,puppy,wolf?random=${cacheBuster})`}"
     >
 
       Correct!
@@ -20,7 +21,10 @@
       :style="{backgroundImage: `radial-gradient(#00000044, #00000088), url(https://loremflickr.com/300/600/graveyard,creepy?random=${cacheBuster})`}"
     >
       Failure
-      <button @click="tryAgain" style="position:relative;top:50px">Try Again</button>
+      <button
+        @click="tryAgain"
+        style="position:relative;top:50px"
+      >Try Again</button>
 
     </div>
 
@@ -114,11 +118,18 @@
     },
     watch: {
 
-      side () {
-        console.log(this.cacheBuster)
-        this.cacheBuster = Math.round(Math.random()*1000)
+      side: {
+        immediate: true,
+        handler (newVal) {
+          if (newVal === 'answer') {
+            console.log(this.cacheBuster)
+            this.cacheBuster = Math.round(Math.random() * 1000)
+          }else{
+            this.cacheBuster=1
+          }
+        }      
+        }
 
-      }
     }
   }
 </script>
@@ -147,8 +158,8 @@
 }
 
 .flashcard-back {
-  background-size: cover;
-  background-position: center;
+  background-size: contain,cover;
+  /* background-position: center; */
   color: white;
   font-size: 0.8in;
   text-align: center;
