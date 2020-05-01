@@ -37,10 +37,10 @@
     width: 30in;
     height:30in;
     
-    color:#80808011;
+    color:#FF80800C;
     position:fixed;
     font-size:.8in;
-    
+    background-color: #00000000;
     z-index:5000000000000000000000000;
     user-select: none;
     pointer-events: none;
