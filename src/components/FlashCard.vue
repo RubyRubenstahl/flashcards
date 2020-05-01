@@ -3,7 +3,7 @@
   <div class="container">
     <transition name="fade">
       <div
-        v-if="side==='correct'"
+        v-if="card.side==='correct'"
         class="flashcard"
       >
       Yep</div>
@@ -11,50 +11,44 @@
     <transition name="fade">
 
       <div
-        v-if="side==='incorrect'"
+        v-if="card.side==='incorrect'"
         class="flashcard"
       >Nopes</div>
     </transition>
     <transition name="fade">
 
       <div
-        v-if="side==='question'"
+        v-if="card.side==='question'"
         class="flashcard flashcard-front"
       >
         <form @submit.prevent="checkAnswer">
           <div
-            v-for="(line, index) in inputLines"
+            v-for="(row, index) in card.rows"
             :key="index"
           >
-            <FlashCardLine
-              v-model="inputLines[index]"
-              @change="inputLineChanged"
-            />
+            <FlashCardRow v-model="card.rows[index]"/>
           </div>
-          <hr class="divider-line">
-          <FlashCardLine
-            v-model="answerLine"
-            @change="answerLineChanged"
-          />
-          <button
-            type="submit"
-            class="check-answer"
-          >Check answer</button>
         </form>
       </div>
     </transition>
   </div>
 </template>
 <script>
-  import FlashCardLine from './FlashCardLine'
+  import FlashCardRow from './FlashCardRow'
   export default {
     name: 'FlashCard',
-    components: { FlashCardLine },
+    components: { FlashCardRow },
     data () {
       return {
-        inputs: {},
-        correct: false,
-        side: 'question'
+       card:{
+           rows:[
+               {component: 'number', value: 4},
+               {component: 'input', type: Number, prefix:'+', placeholder: '?', expected: 4},
+               {component: 'divider'},
+               {component: 'number', value: 4}
+               ],
+           side: 'question'
+       }
       }
     },
     methods: {
@@ -70,14 +64,7 @@
       }
     },
     props: {
-      inputLines: {
-        type: Array,
-        required: true
-      },
-      answerLine: {
-        type: Object,
-        required: true
-      }
+    
     }
   }
 </script>
