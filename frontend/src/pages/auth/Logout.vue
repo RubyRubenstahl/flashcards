@@ -33,6 +33,7 @@
       setTimeout(() => {
         this.logout()
       }, 1000);
+      window.localStorage.clear();
     },
     methods: {
       logout () {

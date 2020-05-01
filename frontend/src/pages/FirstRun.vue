@@ -103,7 +103,7 @@
         </q-step>
 
         <q-step
-          :name="3"
+          :name="4"
           title="All done"
           icon="check"
         >
@@ -128,6 +128,7 @@
     mounted () {
       const { User } = this.$FeathersVuex.api;
       this.user = new User({ isAdmin: true, type: 'internal' });
+      window.localStorage.clear();
     },
     data () {
       return {

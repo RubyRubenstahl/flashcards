@@ -81,6 +81,9 @@
           router.push(redirectUrl);
         }).catch(err => console.error(err.message, err))
       }
+    },
+    watch:{
+      errorOnAuthenticate(err){window.localStorage.clear()}
     }
   }
 </script>
