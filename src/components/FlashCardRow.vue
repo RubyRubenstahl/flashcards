@@ -5,7 +5,7 @@
         {{value.prefix}}
       <input
         v-model="value.value"
-        :placeholder="value.placeholder | '?'"
+        :placeholder="value.placeholder || '?'"
       />
     </div>
   </div>
