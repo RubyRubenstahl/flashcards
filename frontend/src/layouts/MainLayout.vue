@@ -35,6 +35,7 @@
             <MenuItem title="Sign Out" icon="logout" to="/logout"></MenuItem>
           </q-menu>
         </q-btn>
+          <MainFAB/>
       </q-toolbar>
 
       <!-- <q-tabs align="left">
@@ -77,8 +78,9 @@
 import { mapState, mapGetters, mapActions } from 'vuex'
   import MainMenu from 'components/ui/MainMenu'
   import MenuItem from 'components/ui/MenuItem'
+  import MainFAB from 'components/MainFAB'
   export default {
-    components: { MainMenu, MenuItem },
+    components: { MainMenu, MenuItem, MainFAB },
     data () {
       return {
         left: false,
