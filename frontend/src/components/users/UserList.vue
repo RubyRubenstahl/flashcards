@@ -22,7 +22,7 @@
           />
         </q-item-section>
         <q-item-section>
-          <q-item-label>{{user.username}} - {{user.firstName}} {{user.lastname}}</q-item-label>
+          <q-item-label>{{user.displayName}}</q-item-label>
 
           <q-item-label caption>{{user.email}}</q-item-label>
         </q-item-section>

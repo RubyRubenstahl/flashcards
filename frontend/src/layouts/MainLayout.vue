@@ -23,14 +23,15 @@
         </q-toolbar-title>
 
 
-        <img v-if="user.avatar" :src="user.avatar"/>
         <q-btn
           dense
           flat
           round
-          icon="fas fa-ellipsis-v"
         >
+           <img v-if="user && user.avatar" :src="user.avatar"/>
+
           <q-menu>
+            <MenuItem title="User Profile" icon="fas fa-edit" to="/app/profile"></MenuItem>
             <MenuItem title="Sign Out" icon="logout" to="/logout"></MenuItem>
           </q-menu>
         </q-btn>
@@ -87,8 +88,7 @@ import { mapState, mapGetters, mapActions } from 'vuex'
     },
     computed:{
       user(){
-      
-        return this.$store.state.auth.user
+      return this.$store.state.auth.user
       }
     }
 

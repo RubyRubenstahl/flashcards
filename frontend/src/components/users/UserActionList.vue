@@ -1,7 +1,7 @@
 <template>
   <q-list style="min-width: 100px">
     <MenuItem
-      :title="`Delete ${user.firstName} ${user.lastName}`"
+      :title="`Delete ${user.displayName}`"
       icon="fas fa-trash"
       @click="confirmDelete"
     />
@@ -24,11 +24,10 @@
     },
     methods: {
       confirmDelete () {
-        const fullName = `${this.user.firstName} ${this.user.lastName}`
         this.$q.dialog({
           title: 'Delete User',
           icon: 'fas fa-trash',
-          message: `Are use sure you want to delete ${fullName}?`,
+          message: `Are use sure you want to delete ${this.user.displayName}?`,
           cancel: true
         })
           .onOk(() => {
@@ -36,7 +35,7 @@
               .then(() => {
                 this.$q.notify({
                   type: 'positive',
-                  message: `${fullName} Deleted`
+                  message: `${this.user.displayName} Deleted`
                 })
               });
           })
