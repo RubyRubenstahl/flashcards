@@ -1,6 +1,7 @@
 const msGraph = require("../../lib/ms-graph");
 const DataURI = require("datauri");
 const datauri = new DataURI();
+
 const mime = require("mime-types");
 const { Unavailable } = require("@feathersjs/errors");
 const {
@@ -34,11 +35,24 @@ class MicrosoftOauthStrategy extends OAuthStrategy {
     return user;
   }
 
-  async fetchUserAvatar(authData) {
-    const res = await msGraph(authData).get("/me/photo/$value");
-    const fileExtension = "." + mime.extension(res.headers["content-type"]);
-    const imageDataUri = datauri.format(fileExtension, res.data);
-    return imageDataUri.content;
+  async fetchUserAvatar (authData) {
+    try{
+         const res = await msGraph(authData).get("/me/photos/64x64/$value", {
+           headers: { accept: "image/*" },
+           responseType: "arraybuffer"
+           //  responseType: 'blob'
+         });
+        //  const imageDataUri = Buffer.from(res.data, "binary").toString(
+        //    "base64"
+        //  );
+      const imageDataUri = datauri.format(res.data['content-type'], Buffer.from(res.data));
+      return imageDataUri.content;
+      
+    }
+    catch (err) {
+      console.error(`Error fetching user avatar reason: ${err.message}`)
+      return null;
+    }
   }
 
   async getProfile (data, params) {
@@ -46,7 +60,9 @@ class MicrosoftOauthStrategy extends OAuthStrategy {
       const userInfo = await this.fetchOfficeProfile(data);
       return { ...data, userInfo };
     } catch (err) {
-      throw new Unavailable("Failed to fetch Office 365 user profile", err);
+      const message = `Failed to fetch Office 365 user profile. reason: ${err.message}`
+      console.error(message, err)
+      throw new Unavailable(message);
     }
   }
 
