@@ -16,10 +16,12 @@
       <template v-slot:header>
         <q-item-section avatar>
           <q-avatar
-            icon="fas fa-user"
             color="primary"
             text-color="white"
-          />
+
+          >
+          <img :src="user.avatar" alt="">
+          </q-avatar>
         </q-item-section>
         <q-item-section>
           <q-item-label>{{user.displayName}}</q-item-label>
