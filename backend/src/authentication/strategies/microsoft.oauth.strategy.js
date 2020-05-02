@@ -90,16 +90,5 @@ class MicrosoftOauthStrategy extends OAuthStrategy {
   }
 }
 
-module.exports = app => {
-  const authentication = new AuthenticationService(app);
-
-  authentication.register("jwt", new JWTStrategy());
-  authentication.register("local", new LocalStrategy());
-
-  app.use("/authentication", authentication);
-  // authentication.register("microsoft", new OAuthStrategy());
-  authentication.register("microsoft", new MicrosoftOauthStrategy());
-  app.configure(expressOauth());
-};
 
 module.exports = MicrosoftOauthStrategy;

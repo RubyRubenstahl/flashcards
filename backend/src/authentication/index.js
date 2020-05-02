@@ -1,4 +1,5 @@
 const MicrosoftOauthStrategy = require('./strategies/microsoft.oauth.strategy.js');
+const GoogleOauthStrategy = require('./strategies/google.oauth.strategy.js');
 const {
   AuthenticationService,
   JWTStrategy
@@ -16,5 +17,6 @@ module.exports = app => {
   app.use("/authentication", authentication);
   // authentication.register("microsoft", new OAuthStrategy());
   authentication.register("microsoft", new MicrosoftOauthStrategy());
+  authentication.register("google", new GoogleOauthStrategy());
   app.configure(expressOauth());
 };

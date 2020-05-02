@@ -13,7 +13,7 @@
     "entity": "user",
     "service": "users",
     "secret": "Uf4Z2A25iyLROPljWHoccRcz1HI=",
-    "authStrategies": ["jwt", "local", "microsoft"],
+    "authStrategies": ["jwt", "local", "microsoft", "google"],
     "jwtOptions": {
       "header": {
         "typ": "access"
@@ -37,6 +37,13 @@
         "authorize_url": "MS_OAUTH_AUTH_URL",
         "secret": "MS_OAUTH_SECRET",
         "scope": ["User.Read"]
+      },
+            "google": {
+        "key": "44638031611-2dovom77ml7m4t7ss3rao71d3dn226k8.apps.googleusercontent.com",
+        "secret": "3ZGtRCH9CKj1O3cXSE8jdozf",
+        "custom_params": { "access_type": "offline" },
+        "scope": ["openid", "email", "profile"],
+        "nonce": true
       }
     }
   },

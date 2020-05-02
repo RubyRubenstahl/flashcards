@@ -1,5 +1,5 @@
 <template>
-  <AuthPageWrapper title="KrohTech Partner Manager">
+  <AuthPageWrapper title="Flashcards">
     <q-form @submit="login">
       <div class="q-gutter-md q-pl-md">
         <q-input
