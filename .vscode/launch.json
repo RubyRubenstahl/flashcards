@@ -15,7 +15,7 @@
             "cwd": "${workspaceFolder}\\backend",
             "program": "${workspaceFolder}\\backend\\src\\index.js",
             "env": {
-                "MONGO_URL": "mongodb://localhost:27017/partner-development-kroh-tech",
+                "MONGO_URL": "mongodb://localhost:27017/flashcards-dev",
                 "NODE_ENV": "development",
                 "OAUTH_REDIRECT": "http://localhost:8080/#/app",
                 "MS_OAUTH_KEY": "14eb7fdb-c310-4867-86e8-f4556198ae35",
