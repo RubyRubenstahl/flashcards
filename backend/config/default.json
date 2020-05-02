@@ -7,7 +7,7 @@
     "max": 50
   },
   "sendgrid": {
-    "apiKey": "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"
+    "apiKey": "SENDGRID_API_KEY"
   },
   "authentication": {
     "entity": "user",
@@ -18,8 +18,8 @@
       "header": {
         "typ": "access"
       },
-      "audience": "https://dev.partner.kroh.tech",
-      "issuer": "krohtech",
+      "audience": "HOST",
+      "issuer": "HOST",
       "algorithm": "HS256",
       "expiresIn": "1d"
     },

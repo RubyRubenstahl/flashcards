@@ -24,7 +24,8 @@
                 "OAUTH_REDIRECT_HOST": "localhost:8080",
                 "FRONTEND_PORT": "8080",
                 "HOST":"http://localhost",
-                "BACKEND_PORT":"3030"
+                "BACKEND_PORT":"3030",
+                "SENDGRID_API_KEY":"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"
             }
         }
     ]
