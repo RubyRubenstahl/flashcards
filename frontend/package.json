@@ -2,7 +2,7 @@
   "name": "kt-partner-manager",
   "version": "0.0.1",
   "description": "An app for the Rubenstahl family",
-  "productName": "KrohTech Partner Management",
+  "productName": "Flashcards",
   "cordovaId": "org.cordova.krohtech.kt-partner-manager",
   "capacitorId": "",
   "author": "Ruby Rubenstahl <ruby@ruby-lighting.com>",

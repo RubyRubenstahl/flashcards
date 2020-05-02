@@ -4,6 +4,11 @@
       href="/oauth/microsoft"
       class="full-width flex flex-center q-ma-lg"
     ><img src="statics/login-with-microsoft-button.png" /></a>
+
+    <a
+      href="/oauth/google"
+      class="full-width flex flex-center q-ma-lg"
+    ><img src="statics/login-with-google-button.png" /></a>
   </div>
 
 </template>

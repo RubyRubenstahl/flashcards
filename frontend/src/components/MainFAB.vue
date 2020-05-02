@@ -50,8 +50,8 @@
 </script>
 <style scoped>
 .main-fab {
-  position: absolute;
+  position: fixed;
   right: 10px;
-  top: 80px;
+  bottom: 50px;
 }
 </style>
