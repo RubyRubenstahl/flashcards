@@ -1,0 +1,3 @@
+# Build stage
+FROM node AS buildenv
+RUN npm install -g quasar-cli
